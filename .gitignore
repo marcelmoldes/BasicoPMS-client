@@ -22,3 +22,5 @@ pnpm-debug.log*
 *.sln
 *.sw?
 !/src/views/HomeView.vue
+!/src/components/dashlets/ProjectsDashlet.vue
+!/src/views/Dashboard/components/KpiDashlet.vue
