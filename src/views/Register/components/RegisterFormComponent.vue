@@ -15,18 +15,6 @@
         >
           <form class="space-y-6" action="#" method="POST">
             <div>
-              <label class="block text-sm font-medium leading-6 text-gray-900"
-                >Last Name</label
-              >
-              <div class="mt-2">
-                <input
-                  required
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div>
               <label
                 for="password"
                 class="block text-sm font-medium leading-6 text-gray-900"
@@ -34,11 +22,43 @@
               >
               <div class="mt-2">
                 <input
+                  v-model="formData.first_name"
+                  required
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  :class="errors.first_name ? 'ring-red-500' : 'ring-gray-300'"
+                />
+                <div class="text-red-500 text-sm mt-1" v-if="errors.first_name">
+                  {{ errors.first_name }}
+                </div>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium leading-6 text-gray-900"
+                >Last Name</label
+              >
+              <div class="mt-2">
+                <input
+                  v-model="formData.last_name"
                   required
                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
+            <div></div>
+
+            <div>
+              <label class="block text-sm font-medium leading-6 text-gray-900"
+                >Team Name</label
+              >
+              <div class="mt-2">
+                <input
+                  v-model="formData.team_name"
+                  required
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+            <div></div>
 
             <div>
               <label
@@ -48,6 +68,7 @@
               >
               <div class="mt-2">
                 <input
+                  v-model="formData.email"
                   id="email"
                   name="email"
                   type="email"
@@ -66,6 +87,7 @@
               >
               <div class="mt-2">
                 <input
+                  v-model="formData.password"
                   id="password"
                   name="password"
                   type="password"
@@ -87,7 +109,8 @@
 
             <div>
               <button
-                type="submit"
+                @click="save"
+                type="button"
                 class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Sign in
@@ -108,12 +131,41 @@
     </div>
   </div>
 </template>
-
 <script>
-//import axios from "axios";
+import axios from "axios";
+import Toastify from "toastify-js";
+
 export default {
   data() {
-    return {};
+    return {
+      formData: {
+        first_name: "",
+        last_name: "",
+        email: "",
+        password: "",
+        team_name: "",
+      },
+      errors: {},
+    };
+  },
+  methods: {
+    async save() {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/register",
+          this.formData
+        );
+        if (response.data) {
+          Toastify({
+            text: "Registration successful!",
+            duration: 3000,
+          }).showToast();
+          setTimeout(() => this.$router.push("/login"), 3100);
+        }
+      } catch ({ response }) {
+        this.errors = response.data.errors;
+      }
+    },
   },
 };
 </script>
