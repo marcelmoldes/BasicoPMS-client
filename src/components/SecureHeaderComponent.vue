@@ -158,14 +158,16 @@
                   id="user-menu-item-1"
                   >Settings</a
                 >
-                <a
-                  href="#"
+                <button
+                  type="button"
                   class="block px-4 py-2 text-sm text-gray-700"
                   role="menuitem"
                   tabindex="-1"
                   id="user-menu-item-2"
-                  >Sign out</a
+                  @click="$emit('logUserOut')"
                 >
+                  Log out
+                </button>
               </div>
             </div>
           </div>
@@ -200,7 +202,22 @@
     </nav>
   </div>
 </template>
-
-<script setup lang="ts"></script>
+<script>
+export default {
+  props: ["user"],
+  data() {
+    return {
+      isVisible: true,
+      accountMenuOpen: false,
+      mobileMenuOpen: false,
+    };
+  },
+  methods: {
+    closeMenu() {
+      this.accountMenuOpen = false;
+    },
+  },
+};
+</script>
 
 <style scoped></style>

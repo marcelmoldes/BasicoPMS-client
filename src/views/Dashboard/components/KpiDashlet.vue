@@ -6,7 +6,7 @@
           <h2
             class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
           >
-            Welcome to your Dashboard Marcel
+            Welcome to your Dashboard
           </h2>
           <p class="mt-4 text-lg leading-8 text-gray-600">
             Lorem ipsum dolor sit amet consect adipisicing possimus.
@@ -61,6 +61,11 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script>
+export default {
+  props: ["user"],
+  data() {},
+};
+</script>
 
 <style scoped></style>

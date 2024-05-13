@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
-import LoginIndex from "@/views/Login/LoginIndex.vue";
-import RegisterIndex from "@/views/Register/RegisterIndex.vue";
+import LoginIndex from "@/views/Login/LoginIndexView.vue";
+import RegisterIndex from "@/views/Register/RegisterIndexView.vue";
 import DashboardIndex from "@/views/Dashboard/DashboardIndex.vue";
 
 const routes = [

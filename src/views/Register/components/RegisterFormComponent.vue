@@ -24,7 +24,7 @@
                 <input
                   v-model="formData.first_name"
                   required
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 pl-2 shadow-sm ring-1 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   :class="errors.first_name ? 'ring-red-500' : 'ring-gray-300'"
                 />
                 <div class="text-red-500 text-sm mt-1" v-if="errors.first_name">
@@ -40,8 +40,12 @@
                 <input
                   v-model="formData.last_name"
                   required
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 pl-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  :class="errors.last_name ? 'ring-red-500' : 'ring-gray-300'"
                 />
+                <div class="text-red-500 text-sm mt-1" v-if="errors.last_name">
+                  {{ errors.last_name }}
+                </div>
               </div>
             </div>
             <div></div>
@@ -54,8 +58,12 @@
                 <input
                   v-model="formData.team_name"
                   required
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 pl-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  :class="errors.team_name ? 'ring-red-500' : 'ring-gray-300'"
                 />
+                <div class="text-red-500 text-sm mt-1" v-if="errors.team_name">
+                  {{ errors.team_name }}
+                </div>
               </div>
             </div>
             <div></div>
@@ -74,8 +82,12 @@
                   type="email"
                   autocomplete="email"
                   required
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 pl-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  :class="errors.email ? 'ring-red-500' : 'ring-gray-300'"
                 />
+                <div class="text-red-500 text-sm mt-1" v-if="errors.email">
+                  {{ errors.email }}
+                </div>
               </div>
             </div>
 
@@ -93,8 +105,12 @@
                   type="password"
                   autocomplete="current-password"
                   required
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 pl-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  :class="errors.password ? 'ring-red-500' : 'ring-gray-300'"
                 />
+                <div class="text-red-500 text-sm mt-1" v-if="errors.password">
+                  {{ errors.password }}
+                </div>
               </div>
             </div>
             <div class="flex items-center justify-between">
@@ -134,6 +150,7 @@
 <script>
 import axios from "axios";
 import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
 
 export default {
   data() {
