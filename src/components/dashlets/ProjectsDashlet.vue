@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-20">
+  <div class="mt-10">
     <div class="px-4 sm:px-6 lg:px-8">
       <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
@@ -15,67 +15,59 @@
                 scope="col"
                 class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
               >
-                Plan
+                Name
               </th>
               <th
                 scope="col"
                 class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
               >
-                Memory
+                Start Date
               </th>
               <th
                 scope="col"
                 class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
               >
-                CPU
+                End Date
               </th>
               <th
                 scope="col"
                 class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
               >
-                Storage
+                Status
               </th>
               <th
                 scope="col"
                 class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
               >
-                Price
+                Owner
               </th>
               <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                 <span class="sr-only">Select</span>
               </th>
             </tr>
           </thead>
+
           <tbody>
-            <tr>
+            <tr v-for="project in projects" :key="project">
               <td class="relative py-4 pl-4 pr-3 text-sm sm:pl-6">
-                <div class="font-medium text-gray-900">Hobby</div>
+                {{ project.name }}
                 <div
                   class="mt-1 flex flex-col text-gray-500 sm:block lg:hidden"
-                >
-                  <span>4 GB RAM / 4 CPUs</span>
-                  <span class="hidden sm:inline">·</span>
-                  <span>128 GB SSD disk</span>
-                </div>
+                ></div>
               </td>
               <td
                 class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell"
-              >
-                4 GB RAM
-              </td>
+              ></td>
+              <td
+                class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell"
+              ></td>
               <td
                 class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell"
               >
-                4 CPUs
-              </td>
-              <td
-                class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell"
-              >
-                128 GB SSD disk
+                {{ project.status }}
               </td>
               <td class="px-3 py-3.5 text-sm text-gray-500">
-                <div class="sm:hidden">$40/mo</div>
-                <div class="hidden sm:block">$40/month</div>
+                {{ user.firstName }}
               </td>
               <td
                 class="relative py-3.5 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"
@@ -88,226 +80,6 @@
                 </button>
               </td>
             </tr>
-            <tr>
-              <td
-                class="relative py-4 pl-4 pr-3 text-sm sm:pl-6 border-t border-transparent"
-              >
-                <div class="font-medium text-gray-900">
-                  Startup
-                  <span class="ml-1 text-indigo-600">(Current Plan)</span>
-                </div>
-                <div
-                  class="mt-1 flex flex-col text-gray-500 sm:block lg:hidden"
-                >
-                  <span>8 GB RAM / 6 CPUs</span>
-                  <span class="hidden sm:inline">·</span>
-                  <span>256 GB SSD disk</span>
-                </div>
-                <div
-                  class="absolute -top-px left-6 right-0 h-px bg-gray-200"
-                ></div>
-              </td>
-              <td
-                class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell border-t border-gray-200"
-              >
-                8 GB RAM
-              </td>
-              <td
-                class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell border-t border-gray-200"
-              >
-                6 CPUs
-              </td>
-              <td
-                class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell border-t border-gray-200"
-              >
-                256 GB SSD disk
-              </td>
-              <td
-                class="px-3 py-3.5 text-sm text-gray-500 border-t border-gray-200"
-              >
-                <div class="sm:hidden">$80/mo</div>
-                <div class="hidden sm:block">$80/month</div>
-              </td>
-              <td
-                class="relative py-3.5 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 border-t border-transparent"
-              >
-                <button
-                  type="button"
-                  class="inline-flex items-center rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white"
-                  disabled
-                >
-                  Select<span class="sr-only">, Startup</span>
-                </button>
-                <div
-                  class="absolute -top-px left-0 right-6 h-px bg-gray-200"
-                ></div>
-              </td>
-            </tr>
-            <tr>
-              <td
-                class="relative py-4 pl-4 pr-3 text-sm sm:pl-6 border-t border-transparent"
-              >
-                <div class="font-medium text-gray-900">
-                  Startup
-                  <span class="ml-1 text-indigo-600">(Current Plan)</span>
-                </div>
-                <div
-                  class="mt-1 flex flex-col text-gray-500 sm:block lg:hidden"
-                >
-                  <span>8 GB RAM / 6 CPUs</span>
-                  <span class="hidden sm:inline">·</span>
-                  <span>256 GB SSD disk</span>
-                </div>
-                <div
-                  class="absolute -top-px left-6 right-0 h-px bg-gray-200"
-                ></div>
-              </td>
-              <td
-                class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell border-t border-gray-200"
-              >
-                8 GB RAM
-              </td>
-              <td
-                class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell border-t border-gray-200"
-              >
-                6 CPUs
-              </td>
-              <td
-                class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell border-t border-gray-200"
-              >
-                256 GB SSD disk
-              </td>
-              <td
-                class="px-3 py-3.5 text-sm text-gray-500 border-t border-gray-200"
-              >
-                <div class="sm:hidden">$80/mo</div>
-                <div class="hidden sm:block">$80/month</div>
-              </td>
-              <td
-                class="relative py-3.5 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 border-t border-transparent"
-              >
-                <button
-                  type="button"
-                  class="inline-flex items-center rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white"
-                  disabled
-                >
-                  Select<span class="sr-only">, Startup</span>
-                </button>
-                <div
-                  class="absolute -top-px left-0 right-6 h-px bg-gray-200"
-                ></div>
-              </td>
-            </tr>
-            <tr>
-              <td
-                class="relative py-4 pl-4 pr-3 text-sm sm:pl-6 border-t border-transparent"
-              >
-                <div class="font-medium text-gray-900">
-                  Startup
-                  <span class="ml-1 text-indigo-600">(Current Plan)</span>
-                </div>
-                <div
-                  class="mt-1 flex flex-col text-gray-500 sm:block lg:hidden"
-                >
-                  <span>8 GB RAM / 6 CPUs</span>
-                  <span class="hidden sm:inline">·</span>
-                  <span>256 GB SSD disk</span>
-                </div>
-                <div
-                  class="absolute -top-px left-6 right-0 h-px bg-gray-200"
-                ></div>
-              </td>
-              <td
-                class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell border-t border-gray-200"
-              >
-                8 GB RAM
-              </td>
-              <td
-                class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell border-t border-gray-200"
-              >
-                6 CPUs
-              </td>
-              <td
-                class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell border-t border-gray-200"
-              >
-                256 GB SSD disk
-              </td>
-              <td
-                class="px-3 py-3.5 text-sm text-gray-500 border-t border-gray-200"
-              >
-                <div class="sm:hidden">$80/mo</div>
-                <div class="hidden sm:block">$80/month</div>
-              </td>
-              <td
-                class="relative py-3.5 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 border-t border-transparent"
-              >
-                <button
-                  type="button"
-                  class="inline-flex items-center rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white"
-                  disabled
-                >
-                  Select<span class="sr-only">, Startup</span>
-                </button>
-                <div
-                  class="absolute -top-px left-0 right-6 h-px bg-gray-200"
-                ></div>
-              </td>
-            </tr>
-            <tr>
-              <td
-                class="relative py-4 pl-4 pr-3 text-sm sm:pl-6 border-t border-transparent"
-              >
-                <div class="font-medium text-gray-900">
-                  Startup
-                  <span class="ml-1 text-indigo-600">(Current Plan)</span>
-                </div>
-                <div
-                  class="mt-1 flex flex-col text-gray-500 sm:block lg:hidden"
-                >
-                  <span>8 GB RAM / 6 CPUs</span>
-                  <span class="hidden sm:inline">·</span>
-                  <span>256 GB SSD disk</span>
-                </div>
-                <div
-                  class="absolute -top-px left-6 right-0 h-px bg-gray-200"
-                ></div>
-              </td>
-              <td
-                class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell border-t border-gray-200"
-              >
-                8 GB RAM
-              </td>
-              <td
-                class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell border-t border-gray-200"
-              >
-                6 CPUs
-              </td>
-              <td
-                class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell border-t border-gray-200"
-              >
-                256 GB SSD disk
-              </td>
-              <td
-                class="px-3 py-3.5 text-sm text-gray-500 border-t border-gray-200"
-              >
-                <div class="sm:hidden">$80/mo</div>
-                <div class="hidden sm:block">$80/month</div>
-              </td>
-              <td
-                class="relative py-3.5 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 border-t border-transparent"
-              >
-                <button
-                  type="button"
-                  class="inline-flex items-center rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white"
-                  disabled
-                >
-                  Select<span class="sr-only">, Startup</span>
-                </button>
-                <div
-                  class="absolute -top-px left-0 right-6 h-px bg-gray-200"
-                ></div>
-              </td>
-            </tr>
 
             <!-- More plans... -->
           </tbody>
@@ -317,6 +89,10 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script>
+export default {
+  props: ["projects", "user"],
+};
+</script>
 
 <style scoped></style>

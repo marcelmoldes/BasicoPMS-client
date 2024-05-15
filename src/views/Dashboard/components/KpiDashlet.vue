@@ -6,10 +6,10 @@
           <h2
             class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
           >
-            Welcome to your Dashboard
+            Welcome to your Dashboard {{ user.firstName }}
           </h2>
           <p class="mt-4 text-lg leading-8 text-gray-600">
-            Lorem ipsum dolor sit amet consect adipisicing possimus.
+            {{ user.email }}
           </p>
         </div>
         <dl

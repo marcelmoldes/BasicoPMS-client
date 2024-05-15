@@ -6,6 +6,7 @@
           <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <!-- Mobile menu button-->
             <button
+              @click="mobileMenuOpen"
               type="button"
               class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               aria-controls="mobile-menu"
@@ -65,7 +66,6 @@
             </div>
             <div class="hidden sm:ml-6 sm:block">
               <div class="flex space-x-4">
-                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <a
                   @click="$router.push('/dashboard')"
                   class="bg-gray-900 text-white cursor-pointer rounded-md px-3 py-2 text-sm font-medium"
@@ -78,13 +78,13 @@
                   >Team</a
                 >
                 <a
-                  href="#"
-                  class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                  @click="$router.push('/projects')"
+                  class="text-gray-300 cursor-pointer hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                   >Projects</a
                 >
                 <a
-                  href="#"
-                  class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                  @click="$router.push('/tasks')"
+                  class="text-gray-300 cursor-pointer hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                   >Tasks</a
                 >
               </div>
@@ -94,6 +94,7 @@
             class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
           >
             <button
+              v-if="isVisible"
               type="button"
               class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
             >
@@ -136,6 +137,7 @@
               </div>
 
               <div
+                v-if="accountMenuOpen"
                 class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                 role="menu"
                 aria-orientation="vertical"
@@ -209,7 +211,7 @@ export default {
     return {
       isVisible: true,
       accountMenuOpen: false,
-      mobileMenuOpen: false,
+      mobileMenuOpen: true,
     };
   },
   methods: {

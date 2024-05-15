@@ -21,7 +21,3 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
-!/src/views/HomeView.vue
-!/src/components/dashlets/ProjectsDashlet.vue
-!/src/views/Dashboard/components/KpiDashlet.vue
-!/src/views/Login/components/LoginFormComponent.vue
