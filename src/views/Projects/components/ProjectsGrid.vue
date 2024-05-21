@@ -72,7 +72,7 @@
         <th class="py-3.5 text-sm font-semibold text-gray-900" scope="col">
           <a
             class="group inline-flex cursor-pointer"
-            @click="toggleSortOrder('due_date')"
+            @click="toggleSortOrder('description')"
           >
             Description
             <span
@@ -260,9 +260,11 @@
 
 <script>
 import axios from "axios";
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/vue/20/solid";
 
 export default {
   props: ["user"],
+  components: { ChevronDownIcon, ChevronUpIcon },
   data() {
     return {
       projects: [],
