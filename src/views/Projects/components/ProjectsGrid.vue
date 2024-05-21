@@ -1,145 +1,257 @@
 <template>
-  <div class="bg-gray-900">
-    <div class="mx-auto max-w-7xl">
-      <div class="bg-gray-900 rounded-xl py-10">
-        <div class="px-4 sm:px-6 lg:px-8">
-          <div class="sm:flex sm:items-center">
-            <div class="sm:flex-auto">
-              <input
-                v-model="params.searchString"
-                class="block w-full rounded-md border ring-1 ring-inset ring-gray-300 bg-gray-50 py-1.5 pl-10 pr-3 text-gray-300 placeholder:text-gray-400 focus:text-gray-900 focus:ring-inset focus:ring-gray-300 sm:text-sm sm:leading-6"
-                placeholder="Search"
-                type="text"
+  <div class="flex flex-col gap-y-3">
+    <div class="flex justify-between">
+      <select
+        v-model="params.perPage"
+        class="w-30 rounded-md py-2.5 pl-3 pr-10 text-black ring-1 ring-inset ring-gray-300 focus:ring-2 sm:text-sm"
+      >
+        <option value="2">2 Records Per Page</option>
+        <option value="5">5 Records Per Page</option>
+        <option value="10">10 Records Per Page</option>
+      </select>
+      <div class="flex gap-x-3 items-center">
+        <div class="relative">
+          <div
+            class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+          >
+            <svg
+              aria-hidden="true"
+              class="h-5 w-5 text-gray-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                fill-rule="evenodd"
               />
-              <select
-                v-model="meta.perPage"
-                class="w-30 rounded-md py-2.5 pl-3 pr-10 text-black ring-1 ring-inset ring-gray-300 focus:ring-2 sm:text-sm"
-              >
-                <option value="1">10 Records Per Page</option>
-                <option value="20">20 Records Per Page</option>
-                <option value="30">30 Records Per Page</option>
-              </select>
-              <h1 class="text-base font-semibold leading-6 text-white">
-                Projects
-              </h1>
-              <p class="mt-2 text-sm text-gray-300">
-                A list of all the projects in your account.
-              </p>
-            </div>
-            <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-              <button
-                type="button"
-                class="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-              >
-                Add Project
-              </button>
-            </div>
+            </svg>
           </div>
-          <div class="mt-8 flow-root">
-            <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-              <div
-                class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8"
-              >
-                <table class="min-w-full divide-y divide-gray-700">
-                  <thead>
-                    <tr>
-                      <th
-                        scope="col"
-                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-0"
-                      >
-                        Name
-                      </th>
-                      <th
-                        scope="col"
-                        class="px-3 py-3.5 text-left text-sm font-semibold text-white"
-                      >
-                        Description
-                      </th>
+          <input
+            v-model="params.searchString"
+            class="block w-full rounded-md border ring-1 ring-inset ring-gray-300 bg-gray-50 py-1.5 pl-10 pr-3 text-gray-300 placeholder:text-gray-400 focus:text-gray-900 focus:ring-inset focus:ring-gray-300 sm:text-sm sm:leading-6"
+            placeholder="Search"
+            type="text"
+          />
+        </div>
+        <button
+          id="form"
+          class="px-8 gap-x-2 font-semibold hover:opacity-90 border-gray-400 border rounded-full py-2 bg-blue-500 text-white"
+        >
+          Create Project
+        </button>
+      </div>
+    </div>
+    <table
+      class="min-w-full divide-y divide-blue-100 rounded-md px-3 border-2 border-gray-300"
+    >
+      <tr class="p-4">
+        <th class="py-3.5 text-sm font-semibold text-gray-900" scope="col">
+          <a
+            class="group inline-flex cursor-pointer"
+            @click="toggleSortOrder('name')"
+          >
+            Name
+            <span
+              :class="
+                params.sortBy === 'name'
+                  ? 'group-hover:bg-gray-200'
+                  : 'invisible group-hover:visible group-focus:visible'
+              "
+              class="ml-2 flex-none rounded bg-gray-100 text-gray-900 group-hover:bg-gray-200"
+            >
+              <ChevronDownIcon
+                v-if="params.sortBy === 'name' && params.sortOrder === 'desc'"
+                class="h-5 w-5"
+              />
+              <ChevronUpIcon v-else class="h-5 w-5" />
+            </span>
+          </a>
+        </th>
 
-                      <th
-                        scope="col"
-                        class="px-3 py-3.5 text-left text-sm font-semibold text-white"
-                      >
-                        Start Date
-                      </th>
-                      <th
-                        scope="col"
-                        class="px-3 py-3.5 text-left text-sm font-semibold text-white"
-                      >
-                        End Date
-                      </th>
-                      <th
-                        scope="col"
-                        class="px-3 py-3.5 text-left text-sm font-semibold text-white"
-                      >
-                        Status
-                      </th>
+        <th class="py-3.5 text-sm font-semibold text-gray-900" scope="col">
+          <a
+            class="group inline-flex cursor-pointer"
+            @click="toggleSortOrder('due_date')"
+          >
+            Description
+            <span
+              :class="
+                params.sortBy === 'description'
+                  ? 'group-hover:bg-gray-200'
+                  : 'invisible group-hover:visible group-focus:visible'
+              "
+              class="ml-2 flex-none rounded bg-gray-100 text-gray-900 group-hover:bg-gray-200"
+            >
+              <ChevronDownIcon
+                v-if="
+                  params.sortBy === 'description' && params.sortOrder === 'desc'
+                "
+                class="h-5 w-5"
+              />
+              <ChevronUpIcon v-else class="h-5 w-5" />
+            </span>
+          </a>
+        </th>
+        <th class="py-3.5 text-sm font-semibold text-gray-900" scope="col">
+          <a
+            class="group inline-flex cursor-pointer"
+            @click="toggleSortOrder('startDate')"
+          >
+            Start Date
+            <span
+              :class="
+                params.sortBy === 'startDate'
+                  ? 'group-hover:bg-gray-200'
+                  : 'invisible group-hover:visible group-focus:visible'
+              "
+              class="ml-2 flex-none rounded bg-gray-100 text-gray-900 group-hover:bg-gray-200"
+            >
+              <ChevronDownIcon
+                v-if="
+                  params.sortBy === 'startDate' && params.sortOrder === 'desc'
+                "
+                class="h-5 w-5"
+              />
+              <ChevronUpIcon v-else class="h-5 w-5" />
+            </span>
+          </a>
+        </th>
+        <th class="py-3.5 text-sm font-semibold text-gray-900" scope="col">
+          <a
+            class="group inline-flex cursor-pointer"
+            @click="toggleSortOrder('endDate')"
+          >
+            End Date
+            <span
+              :class="
+                params.sortBy === 'endDate'
+                  ? 'group-hover:bg-gray-200'
+                  : 'invisible group-hover:visible group-focus:visible'
+              "
+              class="ml-2 flex-none rounded bg-gray-100 text-gray-900 group-hover:bg-gray-200"
+            >
+              <ChevronDownIcon
+                v-if="
+                  params.sortBy === 'endDate' && params.sortOrder === 'desc'
+                "
+                class="h-5 w-5"
+              />
+              <ChevronUpIcon v-else class="h-5 w-5" />
+            </span>
+          </a>
+        </th>
+        <th class="py-3.5 text-sm font-semibold text-gray-900" scope="col">
+          <a
+            class="group inline-flex cursor-pointer"
+            @click="toggleSortOrder('firstName')"
+          >
+            Owner
+            <span
+              :class="
+                params.sortBy === 'firstName'
+                  ? 'group-hover:bg-gray-200'
+                  : 'invisible group-hover:visible group-focus:visible'
+              "
+              class="ml-2 flex-none rounded bg-gray-100 text-gray-900 group-hover:bg-gray-200"
+            >
+              <ChevronDownIcon
+                v-if="
+                  params.sortBy === 'firstName' && params.sortOrder === 'desc'
+                "
+                class="h-5 w-5"
+              />
+              <ChevronUpIcon v-else class="h-5 w-5" />
+            </span>
+          </a>
+        </th>
+      </tr>
+      <tbody class="divide-y divide-blue-100">
+        <tr v-if="projects.length === 0">
+          <td colspan="8" class="text-center text-gray-500 py-2">
+            No projects found
+          </td>
+        </tr>
+        <tr
+          class="hover:bg-gray-100 cursor-pointer"
+          v-for="project in projects.data"
+          :key="project"
+        >
+          <td
+            class="whitespace-nowrap px-5 p text-sm font-medium text-gray-900"
+          >
+            {{ project.name }}
+          </td>
+          <td class="whitespace-nowrap px-5 text-sm text-gray-500">
+            {{ project.description }}
+          </td>
+          <td class="whitespace-nowrap px-5 py-4 text-sm text-gray-500">
+            {{ project.startDate }}
+          </td>
+          <td class="whitespace-nowrap px-5 py-4 text-sm text-gray-500">
+            {{ project.endDate }}
+          </td>
+          <td class="whitespace-nowrap text-center px-5 text-sm text-gray-500">
+            {{ user.firstName }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="flex items-center justify-between">
+      <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+        <div>
+          <p class="text-l text-gray-400">
+            Total results: <span class="font-medium">{{ meta.total }}</span>
+          </p>
+        </div>
 
-                      <th
-                        scope="col"
-                        class="px-3 py-3.5 text-left text-sm font-semibold text-white"
-                      >
-                        Owner
-                      </th>
-                      <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                        <span class="sr-only">Edit</span>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-gray-800">
-                    <tr v-for="project in projects.data" :key="project">
-                      <td
-                        class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0"
-                      >
-                        {{ project.name }}
-                      </td>
-                      <td
-                        class="whitespace-nowrap px-3 py-4 text-sm text-gray-300"
-                      >
-                        {{ project.description }}
-                      </td>
-
-                      <td
-                        class="whitespace-nowrap px-3 py-4 text-sm text-gray-300"
-                      >
-                        {{
-                          project.startDate
-                            ? project.startDate
-                            : "No start date"
-                        }}
-                      </td>
-                      <td
-                        class="whitespace-nowrap px-3 py-4 text-sm text-gray-300"
-                      >
-                        {{ project.endDate ? project.endDate : "No end date" }}
-                      </td>
-                      <td
-                        class="whitespace-nowrap px-3 py-4 text-sm text-gray-300"
-                      >
-                        {{ project.status }}
-                      </td>
-                      <td
-                        class="whitespace-nowrap px-3 py-4 text-sm text-gray-300"
-                      >
-                        {{ user.firstName }}
-                      </td>
-                      <td
-                        class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0"
-                      >
-                        <a
-                          href="#"
-                          class="text-indigo-400 hover:text-indigo-300"
-                          >Edit</a
-                        >
-                      </td>
-                    </tr>
-
-                    <!-- More people... -->
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+        <div class="">
+          <button
+            :class="
+              params.currentPage === 1 ? 'opacity-50' : 'hover:bg-gray-100'
+            "
+            :disabled="params.currentPage === 1"
+            class="relative inline-flex items-centre bg-white rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0"
+            @click="params.currentPage--"
+          >
+            <span class="sr-only">Previous</span>
+            <svg
+              aria-hidden="true"
+              class="h-5 w-5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </button>
+          <button
+            :class="
+              params.currentPage === meta.lastPage
+                ? 'opacity-50'
+                : 'hover:bg-gray-100'
+            "
+            :disabled="params.currentPage === meta.lastPage"
+            class="relative inline-flex items-center bg-white rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0"
+            @click="params.currentPage++"
+          >
+            <span class="sr-only">Next</span>
+            <svg
+              aria-hidden="true"
+              class="h-5 w-5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     </div>
@@ -159,8 +271,18 @@ export default {
         searchString: "",
         sortBy: "createdAt",
         sortOrder: "desc",
+        currentPage: 1,
+        perPage: "10",
       },
     };
+  },
+  watch: {
+    params: {
+      handler() {
+        this.loadProjects();
+      },
+      deep: true,
+    },
   },
   async mounted() {
     await this.loadProjects();
