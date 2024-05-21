@@ -3,7 +3,7 @@ import LoginIndex from "@/views/Login/LoginIndexView.vue";
 import RegisterIndex from "@/views/Register/RegisterIndexView.vue";
 import DashboardIndex from "@/views/Dashboard/DashboardIndex.vue";
 import TasksIndexView from "@/views/Tasks/TasksIndexView.vue";
-import ProjectsndexView from "@/views/Projects/ProjectsndexView.vue";
+import ProjectsndexView from "@/views/Projects/ProjectsIndexView.vue";
 
 const routes = [
   {

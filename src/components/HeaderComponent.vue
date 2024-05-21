@@ -53,8 +53,14 @@
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
         <a
           @click="$router.push('/login')"
-          class="text-sm p-4 rounded-2xl font-semibold border border-white text-white"
-          >Log in
+          class="gap-x-6 text-sm cursor-pointer px-8 p-2 font-bold hover:bg-cyan-800 rounded-3xl bg-cyan-900 text-white"
+          >Log in </a
+        >z
+
+        <a
+          @click="$router.push('/register')"
+          class="text-sm cursor-pointer px-8 p-2 font-bold hover:bg-cyan-800 rounded-3xl bg-cyan-900 text-white"
+          >Register
         </a>
       </div>
     </nav>
@@ -123,9 +129,17 @@
                 >Log in</a
               >
             </div>
+            <div class="py-6">
+              <a
+                href="#"
+                class="-mx-3 block border-2 border-white rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white bg-gray-800"
+                >Log in</a
+              >
+            </div>
           </div>
         </div>
       </div>
     </div>
   </header>
 </template>
+<script setup></script>

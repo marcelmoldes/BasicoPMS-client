@@ -177,7 +177,7 @@ export default {
             text: "Registration successful!",
             duration: 3000,
           }).showToast();
-          setTimeout(() => this.$router.push("/login"), 3100);
+          setTimeout(() => this.$router.push("/login"), 2000);
         }
       } catch ({ response }) {
         this.errors = response.data.errors;

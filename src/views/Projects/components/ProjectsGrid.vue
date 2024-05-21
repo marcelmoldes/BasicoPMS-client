@@ -5,6 +5,20 @@
         <div class="px-4 sm:px-6 lg:px-8">
           <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
+              <input
+                v-model="params.searchString"
+                class="block w-full rounded-md border ring-1 ring-inset ring-gray-300 bg-gray-50 py-1.5 pl-10 pr-3 text-gray-300 placeholder:text-gray-400 focus:text-gray-900 focus:ring-inset focus:ring-gray-300 sm:text-sm sm:leading-6"
+                placeholder="Search"
+                type="text"
+              />
+              <select
+                v-model="meta.perPage"
+                class="w-30 rounded-md py-2.5 pl-3 pr-10 text-black ring-1 ring-inset ring-gray-300 focus:ring-2 sm:text-sm"
+              >
+                <option value="1">10 Records Per Page</option>
+                <option value="20">20 Records Per Page</option>
+                <option value="30">30 Records Per Page</option>
+              </select>
               <h1 class="text-base font-semibold leading-6 text-white">
                 Projects
               </h1>
@@ -58,6 +72,13 @@
                         scope="col"
                         class="px-3 py-3.5 text-left text-sm font-semibold text-white"
                       >
+                        Status
+                      </th>
+
+                      <th
+                        scope="col"
+                        class="px-3 py-3.5 text-left text-sm font-semibold text-white"
+                      >
                         Owner
                       </th>
                       <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
@@ -66,7 +87,7 @@
                     </tr>
                   </thead>
                   <tbody class="divide-y divide-gray-800">
-                    <tr v-for="project in projects" :key="project">
+                    <tr v-for="project in projects.data" :key="project">
                       <td
                         class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0"
                       >
@@ -91,6 +112,11 @@
                         class="whitespace-nowrap px-3 py-4 text-sm text-gray-300"
                       >
                         {{ project.endDate ? project.endDate : "No end date" }}
+                      </td>
+                      <td
+                        class="whitespace-nowrap px-3 py-4 text-sm text-gray-300"
+                      >
+                        {{ project.status }}
                       </td>
                       <td
                         class="whitespace-nowrap px-3 py-4 text-sm text-gray-300"
@@ -121,9 +147,50 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  props: ["projects", "user"],
-  data() {},
+  props: ["user"],
+  data() {
+    return {
+      projects: [],
+      meta: {},
+      params: {
+        searchString: "",
+        sortBy: "createdAt",
+        sortOrder: "desc",
+      },
+    };
+  },
+  async mounted() {
+    await this.loadProjects();
+    await this.toggleSortOrder();
+  },
+  methods: {
+    async loadProjects() {
+      const response = await axios.get("http://localhost:3000/projects", {
+        params: this.params,
+        headers: {
+          Authorization: this.user ? "Bearer " + this.user.token : null,
+        },
+      });
+      if (response.data) {
+        this.projects = response.data;
+        this.meta = response.data.meta;
+      } else {
+        throw "error";
+      }
+    },
+    async toggleSortOrder(sortBy) {
+      if (this.params.sortBy === sortBy) {
+        this.params.sortOrder =
+          this.params.sortOrder === "asc" ? "desc" : "asc";
+      } else {
+        this.params.sortBy = sortBy;
+        this.params.sortOrder = "asc";
+      }
+    },
+  },
 };
 </script>
 

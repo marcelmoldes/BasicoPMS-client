@@ -50,12 +50,8 @@ export default {
       }
     },
 
-    async loadTasks(page = 1) {
+    async loadTasks() {
       const response = await axios.get("http://localhost:3000/tasks", {
-        params: {
-          perPage: 3,
-          page: page,
-        },
         headers: {
           Authorization: this.user ? "Bearer " + this.user.token : null,
         },
