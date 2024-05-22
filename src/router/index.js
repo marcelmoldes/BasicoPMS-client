@@ -4,6 +4,7 @@ import RegisterIndex from "@/views/Register/RegisterIndexView.vue";
 import DashboardIndex from "@/views/Dashboard/DashboardIndex.vue";
 import TasksIndexView from "@/views/Tasks/TasksIndexView.vue";
 import ProjectsndexView from "@/views/Projects/ProjectsIndexView.vue";
+import TeamIndexView from "@/views/Team/TeamIndexView.vue";
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: "/tasks",
     name: "tasks",
     component: TasksIndexView,
+  },
+  {
+    path: "/team",
+    name: "team",
+    component: TeamIndexView,
   },
 ];
 

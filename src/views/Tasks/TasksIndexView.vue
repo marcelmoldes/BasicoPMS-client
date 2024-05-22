@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-7xl mx-auto mt-10 px-4">
+  <div class="max-w-7xl mx-auto mt-20 px-6">
     <div class="justify-center">
       <tasks-grid :user="user"></tasks-grid>
     </div>

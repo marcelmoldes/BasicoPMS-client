@@ -180,19 +180,19 @@
           <td
             class="whitespace-nowrap px-5 p text-sm font-medium text-gray-900"
           >
-            {{ project.name }}
+            {{ formatters.toProperCase(project.name) }}
           </td>
           <td class="whitespace-nowrap px-5 text-sm text-gray-500">
-            {{ project.description }}
+            {{ formatters.toProperCase(project.description) }}
           </td>
           <td class="whitespace-nowrap px-5 py-4 text-sm text-gray-500">
-            {{ project.startDate }}
+            {{ formatters.formatDate(project.startDate) }}
           </td>
           <td class="whitespace-nowrap px-5 py-4 text-sm text-gray-500">
-            {{ project.endDate }}
+            {{ formatters.formatDate(project.endDate) }}
           </td>
           <td class="whitespace-nowrap text-center px-5 text-sm text-gray-500">
-            {{ user.firstName }}
+            {{ formatters.toProperCase(user.firstName) }}
           </td>
         </tr>
       </tbody>
@@ -261,12 +261,13 @@
 <script>
 import axios from "axios";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/vue/20/solid";
-
+import formatters from "@/helpers/formatters";
 export default {
   props: ["user"],
   components: { ChevronDownIcon, ChevronUpIcon },
   data() {
     return {
+      formatters,
       projects: [],
       meta: {},
       params: {

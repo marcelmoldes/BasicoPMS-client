@@ -5,9 +5,9 @@
         v-model="params.perPage"
         class="w-30 rounded-md py-2.5 pl-3 pr-10 text-black ring-1 ring-inset ring-gray-300 focus:ring-2 sm:text-sm"
       >
-        <option value="2">10 Records Per Page</option>
-        <option value="5">20 Records Per Page</option>
-        <option value="10">30 Records Per Page</option>
+        <option value="2">2 Records Per Page</option>
+        <option value="5">5 Records Per Page</option>
+        <option value="10">10 Records Per Page</option>
       </select>
       <div class="flex gap-x-3 items-center">
         <div class="relative">
@@ -68,13 +68,12 @@
             </span>
           </a>
         </th>
-
         <th class="py-3.5 text-sm font-semibold text-gray-900" scope="col">
           <a
             class="group inline-flex cursor-pointer"
             @click="toggleSortOrder('status')"
           >
-            status
+            Status
             <span
               :class="
                 params.sortBy === 'status'
@@ -96,10 +95,34 @@
             class="group inline-flex cursor-pointer"
             @click="toggleSortOrder('priority')"
           >
-            priority
+            Priority
             <span
               :class="
                 params.sortBy === 'priority'
+                  ? 'group-hover:bg-gray-200'
+                  : 'invisible group-hover:visible group-focus:visible'
+              "
+              class="ml-2 flex-none rounded bg-gray-100 text-gray-900 group-hover:bg-gray-200"
+            >
+              <ChevronDownIcon
+                v-if="
+                  params.sortBy === 'priority' && params.sortOrder === 'desc'
+                "
+                class="h-5 w-5"
+              />
+              <ChevronUpIcon v-else class="h-5 w-5" />
+            </span>
+          </a>
+        </th>
+        <th class="py-3.5 text-sm font-semibold text-gray-900" scope="col">
+          <a
+            class="group inline-flex cursor-pointer"
+            @click="toggleSortOrder('dueDate')"
+          >
+            Start Date
+            <span
+              :class="
+                params.sortBy === 'startDate'
                   ? 'group-hover:bg-gray-200'
                   : 'invisible group-hover:visible group-focus:visible'
               "
@@ -118,9 +141,9 @@
         <th class="py-3.5 text-sm font-semibold text-gray-900" scope="col">
           <a
             class="group inline-flex cursor-pointer"
-            @click="toggleSortOrder('endDate')"
+            @click="toggleSortOrder('dueDate')"
           >
-            End Date
+            Due Date
             <span
               :class="
                 params.sortBy === 'endDate'
@@ -131,7 +154,7 @@
             >
               <ChevronDownIcon
                 v-if="
-                  params.sortBy === 'endDate' && params.sortOrder === 'desc'
+                  params.sortBy === 'dueDate' && params.sortOrder === 'desc'
                 "
                 class="h-5 w-5"
               />
@@ -142,12 +165,12 @@
         <th class="py-3.5 text-sm font-semibold text-gray-900" scope="col">
           <a
             class="group inline-flex cursor-pointer"
-            @click="toggleSortOrder('firstName')"
+            @click="toggleSortOrder('name')"
           >
-            Owner
+            Completion Percentage
             <span
               :class="
-                params.sortBy === 'firstName'
+                params.sortBy === 'completionPercentage'
                   ? 'group-hover:bg-gray-200'
                   : 'invisible group-hover:visible group-focus:visible'
               "
@@ -155,7 +178,33 @@
             >
               <ChevronDownIcon
                 v-if="
-                  params.sortBy === 'firstName' && params.sortOrder === 'desc'
+                  params.sortBy === 'completionPercentage' &&
+                  params.sortOrder === 'desc'
+                "
+                class="h-5 w-5"
+              />
+              <ChevronUpIcon v-else class="h-5 w-5" />
+            </span>
+          </a>
+        </th>
+        <th class="py-3.5 text-sm font-semibold text-gray-900" scope="col">
+          <a
+            class="group inline-flex cursor-pointer"
+            @click="toggleSortOrder('user.firstName')"
+          >
+            Owner
+            <span
+              :class="
+                params.sortBy === 'user.firstName'
+                  ? 'group-hover:bg-gray-200'
+                  : 'invisible group-hover:visible group-focus:visible'
+              "
+              class="ml-2 flex-none rounded bg-gray-100 text-gray-900 group-hover:bg-gray-200"
+            >
+              <ChevronDownIcon
+                v-if="
+                  params.sortBy === 'user.firstName' &&
+                  params.sortOrder === 'desc'
                 "
                 class="h-5 w-5"
               />
@@ -178,19 +227,29 @@
           <td
             class="whitespace-nowrap px-5 p text-sm font-medium text-gray-900"
           >
-            {{ task.name }}
+            {{ formatters.toProperCase(task.name) }}
           </td>
-          <td class="whitespace-nowrap px-5 text-sm text-gray-500">
-            {{ task.description }}
+          <td
+            class="whitespace-nowrap px-5 p text-sm font-medium text-gray-900"
+          >
+            {{ formatters.toProperCase(task.status) }}
+          </td>
+          <td
+            class="whitespace-nowrap px-5 p text-sm font-medium text-gray-900"
+          >
+            {{ formatters.toProperCase(task.priority) }}
           </td>
           <td class="whitespace-nowrap px-5 py-4 text-sm text-gray-500">
-            {{ task.startDate }}
+            {{ formatters.formatDate(task.startDate) }}
           </td>
           <td class="whitespace-nowrap px-5 py-4 text-sm text-gray-500">
-            {{ task.endDate }}
+            {{ formatters.formatDate(task.dueDate) }}
+          </td>
+          <td class="whitespace-nowrap px-5 py-4 text-sm text-gray-500">
+            {{ formatters.formatAmount(task.completionPercentage) }}
           </td>
           <td class="whitespace-nowrap text-center px-5 text-sm text-gray-500">
-            {{ user.firstName }}
+            {{ formatters.toProperCase(user.firstName) }}
           </td>
         </tr>
       </tbody>
@@ -258,11 +317,12 @@
 
 <script>
 import axios from "axios";
-
+import formatters from "@/helpers/formatters";
 export default {
   props: ["user"],
   data() {
     return {
+      formatters,
       tasks: [],
       meta: {},
       params: {
