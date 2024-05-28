@@ -87,7 +87,6 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 export default {
-  computed: {},
   emits: ["userLoggedIn"],
   data() {
     return {

@@ -9,6 +9,13 @@
         <option value="5">5 Records Per Page</option>
         <option value="10">10 Records Per Page</option>
       </select>
+      <button
+        @click="hiddenButton"
+        id="form"
+        class="px-20 text-gray-500 hover:text-white hover:bg-gray-400 ring-black ring-3 justify-items-end gap-x-2 font-semibold hover:opacity-90 border-gray-400 border rounded-full py-2"
+      >
+        Create Task
+      </button>
       <div class="flex gap-x-3 items-center">
         <div class="relative">
           <div
@@ -216,7 +223,7 @@
         <tr
           @mouseenter="showButton = true"
           @mouseleave="showButton = false"
-          @click="$router.push(`/tasks/${task.id}`)"
+          @click="$emit('editTask', task.id)"
           class="hover:bg-gray-100 cursor-pointer"
           v-for="task in tasks.data"
           :key="task"
@@ -309,14 +316,17 @@
         </div>
       </div>
     </div>
+    <!-- Task form goes here -->
   </div>
 </template>
 
 <script>
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/vue/20/solid";
 import axios from "axios";
 import formatters from "@/helpers/formatters";
 export default {
   props: ["user"],
+  components: { ChevronUpIcon, ChevronDownIcon },
   data() {
     return {
       formatters,
@@ -358,6 +368,9 @@ export default {
       } else {
         throw "error";
       }
+    },
+    hiddenButton() {
+      this.$emit("createTask");
     },
     async toggleSortOrder(sortBy) {
       if (this.params.sortBy === sortBy) {

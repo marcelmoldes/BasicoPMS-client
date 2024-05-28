@@ -1,32 +1,47 @@
 <template>
-  <div class="max-w-7xl mx-auto mt-20 px-6">
-    <div v-if="!showForm" class="justify-center">
-      <button
-        @click="showForm = true"
-        id="form"
-        class="px-20 justify-items-end gap-x-2 font-semibold hover:opacity-90 border-gray-400 border rounded-full py-2 bg-blue-500 text-white"
-      >
-        Create Task
-      </button>
-      <tasks-grid :user="user"></tasks-grid>
+  <div class="max-w-7xl mx-auto mt-20 px-6 relative">
+    <div class="justify-center">
+      <tasks-grid
+        @editTask="
+          taskId = $event;
+          showForm = true;
+        "
+        @createTask="
+          taskId = false;
+          showForm = true;
+        "
+        :user="user"
+      ></tasks-grid>
     </div>
-    <task-create-form v-if="showForm"></task-create-form>
+    <task-form
+      :user="user"
+      :task-id="taskId"
+      @closeForm="closeForm"
+      v-if="showForm"
+    ></task-form>
   </div>
 </template>
 <script>
 import TasksGrid from "@/views/Tasks/components/TasksGrid.vue";
-import TaskCreateForm from "@/views/Tasks/components/TaskCreateForm.vue";
+import TaskForm from "@/views/Tasks/components/TaskForm.vue";
 export default {
   props: ["user"],
   components: {
-    TaskCreateForm,
+    TaskForm,
     TasksGrid,
   },
   data() {
     return {
-      showForm: false,
       showButton: false,
+      showForm: false,
+      taskId: false,
     };
+  },
+  methods: {
+    closeForm() {
+      this.showForm = false;
+      // this.loadTasks();
+    },
   },
 };
 </script>
