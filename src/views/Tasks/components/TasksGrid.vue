@@ -34,12 +34,6 @@
             type="text"
           />
         </div>
-        <button
-          id="form"
-          class="px-8 gap-x-2 font-semibold hover:opacity-90 border-gray-400 border rounded-full py-2 bg-blue-500 text-white"
-        >
-          Create Task
-        </button>
       </div>
     </div>
     <table
@@ -220,6 +214,9 @@
           </td>
         </tr>
         <tr
+          @mouseenter="showButton = true"
+          @mouseleave="showButton = false"
+          @click="$router.push(`/tasks/${task.id}`)"
           class="hover:bg-gray-100 cursor-pointer"
           v-for="task in tasks.data"
           :key="task"
@@ -332,6 +329,7 @@ export default {
         currentPage: 1,
         perPage: "10",
       },
+      showButton: false,
     };
   },
   watch: {
