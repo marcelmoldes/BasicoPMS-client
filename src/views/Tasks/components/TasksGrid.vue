@@ -10,7 +10,10 @@
         <option value="10">10 Records Per Page</option>
       </select>
       <button
-        @click="hiddenButton"
+        @click="
+          showForm = true;
+          taskId = false;
+        "
         id="form"
         class="px-20 text-gray-500 hover:text-white hover:bg-gray-400 ring-black ring-3 justify-items-end gap-x-2 font-semibold hover:opacity-90 border-gray-400 border rounded-full py-2"
       >
@@ -118,7 +121,7 @@
         <th class="py-3.5 text-sm font-semibold text-gray-900" scope="col">
           <a
             class="group inline-flex cursor-pointer"
-            @click="toggleSortOrder('dueDate')"
+            @click="toggleSortOrder('startDate')"
           >
             Start Date
             <span
@@ -166,7 +169,7 @@
         <th class="py-3.5 text-sm font-semibold text-gray-900" scope="col">
           <a
             class="group inline-flex cursor-pointer"
-            @click="toggleSortOrder('name')"
+            @click="toggleSortOrder('completionPercentage')"
           >
             Completion Percentage
             <span
@@ -191,12 +194,12 @@
         <th class="py-3.5 text-sm font-semibold text-gray-900" scope="col">
           <a
             class="group inline-flex cursor-pointer"
-            @click="toggleSortOrder('user.firstName')"
+            @click="toggleSortOrder('ownerId')"
           >
             Owner
             <span
               :class="
-                params.sortBy === 'user.firstName'
+                params.sortBy === 'ownerId'
                   ? 'group-hover:bg-gray-200'
                   : 'invisible group-hover:visible group-focus:visible'
               "
@@ -204,8 +207,7 @@
             >
               <ChevronDownIcon
                 v-if="
-                  params.sortBy === 'user.firstName' &&
-                  params.sortOrder === 'desc'
+                  params.sortBy === 'ownerId' && params.sortOrder === 'desc'
                 "
                 class="h-5 w-5"
               />
@@ -223,7 +225,10 @@
         <tr
           @mouseenter="showButton = true"
           @mouseleave="showButton = false"
-          @click="$emit('editTask', task.id)"
+          @click="
+            showForm = true;
+            taskId = task.id;
+          "
           class="hover:bg-gray-100 cursor-pointer"
           v-for="task in tasks.data"
           :key="task"
@@ -316,7 +321,15 @@
         </div>
       </div>
     </div>
-    <!-- Task form goes here -->
+    <task-form
+      :user="user"
+      :task-id="taskId"
+      @closeForm="
+        showForm = false;
+        loadTasks();
+      "
+      v-if="showForm"
+    ></task-form>
   </div>
 </template>
 
@@ -324,9 +337,11 @@
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/vue/20/solid";
 import axios from "axios";
 import formatters from "@/helpers/formatters";
+import TaskForm from "@/views/Tasks/components/TaskForm.vue";
 export default {
   props: ["user"],
-  components: { ChevronUpIcon, ChevronDownIcon },
+  components: { TaskForm, ChevronUpIcon, ChevronDownIcon },
+  emits: ["editTask", "createTask"],
   data() {
     return {
       formatters,
@@ -340,6 +355,8 @@ export default {
         perPage: "10",
       },
       showButton: false,
+      showForm: false,
+      taskId: false,
     };
   },
   watch: {
@@ -368,9 +385,6 @@ export default {
       } else {
         throw "error";
       }
-    },
-    hiddenButton() {
-      this.$emit("createTask");
     },
     async toggleSortOrder(sortBy) {
       if (this.params.sortBy === sortBy) {
