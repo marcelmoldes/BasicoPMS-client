@@ -9,16 +9,7 @@
         <option value="5">5 Records Per Page</option>
         <option value="10">10 Records Per Page</option>
       </select>
-      <button
-        @click="
-          showForm = true;
-          taskId = false;
-        "
-        id="form"
-        class="px-20 text-gray-500 hover:text-white hover:bg-gray-400 ring-black ring-3 justify-items-end gap-x-2 font-semibold hover:opacity-90 border-gray-400 border rounded-full py-2"
-      >
-        Create Task
-      </button>
+
       <div class="flex gap-x-3 items-center">
         <div class="relative">
           <div
@@ -44,6 +35,16 @@
             type="text"
           />
         </div>
+        <button
+          @click="
+            showForm = true;
+            taskId = false;
+          "
+          id="form"
+          class="px-20 text-gray-500 hover:text-white hover:bg-gray-400 ring-black ring-3 justify-items-end gap-x-2 font-semibold hover:opacity-90 border-gray-400 border rounded-full py-2"
+        >
+          Create Task
+        </button>
       </div>
     </div>
     <table
@@ -328,6 +329,7 @@
         showForm = false;
         loadTasks();
       "
+      :showViewButton="true"
       v-if="showForm"
     ></task-form>
   </div>
@@ -354,7 +356,6 @@ export default {
         currentPage: 1,
         perPage: "10",
       },
-      showButton: false,
       showForm: false,
       taskId: false,
     };

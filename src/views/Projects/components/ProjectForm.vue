@@ -65,7 +65,7 @@
                         >
                         <div class="mt-2">
                           <input
-                            v-model="task.name"
+                            v-model="project.name"
                             type="text"
                             name="first-name"
                             id="first-name"
@@ -83,6 +83,32 @@
                           </div>
                         </div>
                       </div>
+                      <div class="sm:col-span-3">
+                        <label
+                          for="first-name"
+                          class="block text-sm font-medium leading-6 text-gray-900"
+                          >Status</label
+                        >
+                        <div class="mt-2">
+                          <input
+                            v-model="project.status"
+                            type="text"
+                            name="first-name"
+                            id="first-name"
+                            autocomplete="given-name"
+                            class="block font-sans px-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            :class="
+                              errors.status ? 'ring-red-500' : 'ring-gray-300'
+                            "
+                          />
+                          <div
+                            class="text-red-500 text-sm mt-1"
+                            v-if="errors.status"
+                          >
+                            {{ errors.status }}
+                          </div>
+                        </div>
+                      </div>
 
                       <div class="sm:col-span-3">
                         <label
@@ -92,7 +118,7 @@
                         >
                         <div class="mt-2">
                           <input
-                            v-model="task.projectId"
+                            v-model="project.projectId"
                             type="text"
                             name="last-name"
                             id="last-name"
@@ -112,60 +138,6 @@
                           </div>
                         </div>
                       </div>
-
-                      <div class="sm:col-span-3">
-                        <label
-                          for="last-name"
-                          class="block text-sm font-medium leading-6 text-gray-900"
-                          >Status</label
-                        >
-                        <div class="mt-2">
-                          <input
-                            v-model="task.status"
-                            type="text"
-                            name="last-name"
-                            id="last-name"
-                            autocomplete="family-name"
-                            class="block font-sans px-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            :class="
-                              errors.status ? 'ring-red-500' : 'ring-gray-300'
-                            "
-                          />
-                          <div
-                            class="text-red-500 text-sm mt-1"
-                            v-if="errors.status"
-                          >
-                            {{ errors.status }}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="sm:col-span-3">
-                        <label
-                          for="last-name"
-                          class="block text-sm font-medium leading-6 text-gray-900"
-                          >Priority</label
-                        >
-                        <div class="mt-2">
-                          <input
-                            v-model="task.priority"
-                            type="text"
-                            name="last-name"
-                            id="last-name"
-                            autocomplete="family-name"
-                            class="block font-sans w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            :class="
-                              errors.priority ? 'ring-red-500' : 'ring-gray-300'
-                            "
-                          />
-                          <div
-                            class="text-red-500 text-sm mt-1"
-                            v-if="errors.priority"
-                          >
-                            {{ errors.priority }}
-                          </div>
-                        </div>
-                      </div>
                       <div class="sm:col-span-3">
                         <label
                           for="last-name"
@@ -174,7 +146,7 @@
                         >
                         <div class="mt-2">
                           <input
-                            v-model="task.startDate"
+                            v-model="project.startDate"
                             type="date"
                             name="last-name"
                             id="last-name"
@@ -199,83 +171,25 @@
                         <label
                           for="last-name"
                           class="block text-sm font-medium leading-6 text-gray-900"
-                          >Due Date</label
+                          >End Date</label
                         >
                         <div class="mt-2">
                           <input
-                            v-model="task.dueDate"
+                            v-model="project.endDate"
                             type="date"
                             name="last-name"
                             id="last-name"
                             autocomplete="family-name"
                             class="block font-sans w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             :class="
-                              errors.dueDate ? 'ring-red-500' : 'ring-gray-300'
+                              errors.endDate ? 'ring-red-500' : 'ring-gray-300'
                             "
                           />
                           <div
                             class="text-red-500 text-sm mt-1"
-                            v-if="errors.dueDate"
+                            v-if="errors.endDate"
                           >
-                            {{ errors.dueDate }}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="sm:col-span-3">
-                        <label
-                          for="last-name"
-                          class="block text-sm font-medium leading-6 text-gray-900"
-                          >Completion Date</label
-                        >
-                        <div class="mt-2">
-                          <input
-                            v-model="task.completionDate"
-                            type="date"
-                            name="last-name"
-                            id="last-name"
-                            autocomplete="family-name"
-                            class="block font-sans w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            :class="
-                              errors.completionDate
-                                ? 'ring-red-500'
-                                : 'ring-gray-300'
-                            "
-                          />
-                          <div
-                            class="text-red-500 text-sm mt-1"
-                            v-if="errors.completionDate"
-                          >
-                            {{ errors.completionDate }}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="sm:col-span-3">
-                        <label
-                          for="last-name"
-                          class="block text-sm font-medium leading-6 text-gray-900"
-                          >Completion Percentage</label
-                        >
-                        <div class="mt-2">
-                          <input
-                            v-model="task.completionPercentage"
-                            type="text"
-                            name="last-name"
-                            id="last-name"
-                            autocomplete="family-name"
-                            class="block font-sans w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            :class="
-                              errors.completionPercentage
-                                ? 'ring-red-500'
-                                : 'ring-gray-300'
-                            "
-                          />
-                          <div
-                            class="text-red-500 text-sm mt-1"
-                            v-if="errors.completionPercentage"
-                          >
-                            {{ errors.completionPercentage }}
+                            {{ errors.endDate }}
                           </div>
                         </div>
                       </div>
@@ -306,7 +220,7 @@
                           >
                           <div class="mt-2 mr-3">
                             <textarea
-                              v-model="task.description"
+                              v-model="project.description"
                               rows="4"
                               name="comment"
                               id="comment"
@@ -328,18 +242,19 @@
                       </div>
                     </div>
                   </div>
+
                   <div
-                    class="flex items-center justify-between gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8"
+                    class="flex items-center justify-between border-t border-gray-900/10 px-4 py-4 sm:px-8"
                   >
                     <button
-                      v-if="this.taskId ? showViewButton : ''"
-                      @click="removeTask(taskId)"
+                      v-if="this.projectId ? showViewButton : ''"
+                      @click="removeProject(projectId)"
                       type="button"
                       class="rounded-md bg-red-700 px-3 py-2 text-sm font-sans text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                       Delete
                     </button>
-                    <div class="justify-items-end">
+                    <div class="justify-center">
                       <button
                         @click="emitClose"
                         type="button"
@@ -369,27 +284,24 @@
 <script>
 import axios from "axios";
 export default {
-  props: ["user", "taskId", "showViewButton"],
+  props: ["user", "projectId", "showViewButton"],
   data() {
     return {
       // eslint-disable-next-line vue/no-dupe-keys
-      task: {
+      project: {
         id: "",
         projectId: "",
         name: "",
         description: "",
-        status: "",
-        priority: "",
         startDate: "",
-        dueDate: "",
-        completionDate: "",
-        completionPercentage: "",
+        endDate: "",
+        status: "",
       },
       errors: {},
     };
   },
   async mounted() {
-    if (this.taskId) {
+    if (this.projectId) {
       await this.loadData();
     }
   },
@@ -400,7 +312,7 @@ export default {
     },
     async loadData() {
       const response = await axios.get(
-        "http://localhost:3000/tasks/" + this.taskId,
+        "http://localhost:3000/projects/" + this.projectId,
         {
           headers: {
             Authorization: this.user ? "Bearer " + this.user.token : null,
@@ -408,18 +320,17 @@ export default {
         }
       );
       if (response.data) {
-        this.task = response.data;
-        this.task.startDate = this.formatISODate(this.task.startDate);
-        this.task.completionDate = this.formatISODate(this.task.completionDate);
-        this.task.dueDate = this.formatISODate(this.task.dueDate);
+        this.project = response.data;
+        this.project.startDate = this.formatISODate(this.project.startDate);
+        this.project.endDate = this.formatISODate(this.project.endDate);
       }
     },
-    async removeTask() {
+    async removeProject() {
       const confirmDelete = confirm(
-        "Are you sure you want to delete this task?"
+        "Are you sure you want to delete this Project?"
       );
       if (confirmDelete) {
-        await axios.delete("http://localhost:3000/tasks/" + this.taskId, {
+        await axios.delete("http://localhost:3000/projects/" + this.projectId, {
           headers: {
             Authorization: this.user ? "Bearer " + this.user.token : null,
           },
@@ -433,10 +344,10 @@ export default {
     },
     async save() {
       try {
-        if (this.task.id) {
+        if (this.project.id) {
           await axios.patch(
-            "http://localhost:3000/tasks/" + this.task.id,
-            this.task,
+            "http://localhost:3000/projects/" + this.project.id,
+            this.project,
             {
               headers: {
                 Authorization: this.user ? "Bearer " + this.user.token : null,
@@ -444,7 +355,7 @@ export default {
             }
           );
         } else {
-          await axios.post("http://localhost:3000/tasks", this.task, {
+          await axios.post("http://localhost:3000/projects", this.project, {
             headers: {
               Authorization: this.user ? "Bearer " + this.user.token : null,
             },

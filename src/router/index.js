@@ -5,8 +5,6 @@ import DashboardIndex from "@/views/Dashboard/DashboardIndex.vue";
 import TasksIndexView from "@/views/Tasks/TasksIndexView.vue";
 import ProjectsIndexView from "@/views/Projects/ProjectsIndexView.vue";
 import TeamIndexView from "@/views/Team/TeamIndexView.vue";
-import TaskDetailsView from "@/views/Tasks/TaskDetailsView.vue";
-
 const routes = [
   {
     path: "/register",
@@ -23,11 +21,6 @@ const routes = [
     path: "/dashboard",
     name: "dashboard",
     component: DashboardIndex,
-  },
-  {
-    path: "/tasks/:id",
-    name: "task",
-    component: TaskDetailsView,
   },
   {
     path: "/tasks",

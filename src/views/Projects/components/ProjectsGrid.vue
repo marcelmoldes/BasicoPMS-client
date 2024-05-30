@@ -35,8 +35,12 @@
           />
         </div>
         <button
+          @click="
+            showForm = true;
+            projectId = false;
+          "
           id="form"
-          class="px-8 gap-x-2 font-semibold hover:opacity-90 border-gray-400 border rounded-full py-2 bg-blue-500 text-white"
+          class="px-20 text-gray-500 hover:text-white hover:bg-gray-400 ring-black ring-3 justify-items-end gap-x-2 font-semibold hover:opacity-90 border-gray-400 border rounded-full py-2"
         >
           Create Project
         </button>
@@ -173,6 +177,10 @@
           </td>
         </tr>
         <tr
+          @click="
+            showForm = true;
+            projectId = project.id;
+          "
           class="hover:bg-gray-100 cursor-pointer"
           v-for="project in projects.data"
           :key="project"
@@ -255,6 +263,16 @@
         </div>
       </div>
     </div>
+    <project-form
+      :user="user"
+      :project-id="projectId"
+      @closeForm="
+        showForm = false;
+        loadProjects();
+      "
+      :showViewButton="true"
+      v-if="showForm"
+    ></project-form>
   </div>
 </template>
 
@@ -262,9 +280,11 @@
 import axios from "axios";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/vue/20/solid";
 import formatters from "@/helpers/formatters";
+import ProjectForm from "@/views/Projects/components/ProjectForm.vue";
 export default {
   props: ["user"],
-  components: { ChevronDownIcon, ChevronUpIcon },
+  emits: ["editTask", "createTask"],
+  components: { ProjectForm, ChevronDownIcon, ChevronUpIcon },
   data() {
     return {
       formatters,
@@ -277,6 +297,8 @@ export default {
         currentPage: 1,
         perPage: "10",
       },
+      showForm: false,
+      projectId: false,
     };
   },
   watch: {
