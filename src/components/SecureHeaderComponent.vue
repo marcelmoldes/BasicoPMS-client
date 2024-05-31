@@ -128,8 +128,8 @@
                 tabindex="-1"
               >
                 <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700"
+                  @click="$router.push('/personal-account')"
+                  class="block px-4 cursor-pointer py-2 text-sm text-gray-700"
                   role="menuitem"
                   tabindex="-1"
                   id="user-menu-item-0"
@@ -145,7 +145,7 @@
                 >
                 <button
                   type="button"
-                  class="block px-4 py-2 text-sm text-gray-700"
+                  class="block px-4 cursor-pointer py-2 text-sm text-gray-700"
                   role="menuitem"
                   tabindex="-1"
                   id="user-menu-item-2"

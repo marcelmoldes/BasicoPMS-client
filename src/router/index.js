@@ -5,6 +5,7 @@ import DashboardIndex from "@/views/Dashboard/DashboardIndex.vue";
 import TasksIndexView from "@/views/Tasks/TasksIndexView.vue";
 import ProjectsIndexView from "@/views/Projects/ProjectsIndexView.vue";
 import TeamIndexView from "@/views/Team/TeamIndexView.vue";
+import PersonalAccountIndexView from "@/views/PersonalAccount/PersonalAccountIndexView.vue";
 const routes = [
   {
     path: "/register",
@@ -16,7 +17,11 @@ const routes = [
     name: "login",
     component: LoginIndex,
   },
-
+  {
+    path: "/personal-account",
+    name: "personal-account",
+    component: PersonalAccountIndexView,
+  },
   {
     path: "/dashboard",
     name: "dashboard",

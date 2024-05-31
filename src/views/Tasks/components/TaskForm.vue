@@ -120,17 +120,16 @@
                           >Status</label
                         >
                         <div class="mt-2">
-                          <input
-                            v-model="task.status"
-                            type="text"
-                            name="last-name"
-                            id="last-name"
-                            autocomplete="family-name"
-                            class="block font-sans px-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            :class="
-                              errors.status ? 'ring-red-500' : 'ring-gray-300'
-                            "
-                          />
+                          <select v-model="task.status">
+                            <option
+                              :value="option.value"
+                              v-for="option of taskStatusOptions"
+                              :key="option"
+                            >
+                              {{ option.label }}
+                            </option>
+                          </select>
+
                           <div
                             class="text-red-500 text-sm mt-1"
                             v-if="errors.status"
@@ -331,14 +330,17 @@
                   <div
                     class="flex items-center justify-between gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8"
                   >
-                    <button
-                      v-if="this.taskId ? showViewButton : ''"
-                      @click="removeTask(taskId)"
-                      type="button"
-                      class="rounded-md bg-red-700 px-3 py-2 text-sm font-sans text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    >
-                      Delete
-                    </button>
+                    <div>
+                      <button
+                        v-if="this.taskId ? showViewButton : ''"
+                        @click="removeTask(taskId)"
+                        type="button"
+                        class="rounded-md bg-red-700 px-3 py-2 text-sm font-sans text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      >
+                        Delete
+                      </button>
+                    </div>
+
                     <div class="justify-items-end">
                       <button
                         @click="emitClose"
@@ -372,7 +374,10 @@ export default {
   props: ["user", "taskId", "showViewButton"],
   data() {
     return {
-      // eslint-disable-next-line vue/no-dupe-keys
+      taskStatusOptions: [
+        { label: "Open", value: "open" },
+        { label: "In Progress", value: "in_progress" },
+      ],
       task: {
         id: "",
         projectId: "",
