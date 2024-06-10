@@ -1,34 +1,40 @@
 <template>
-  <div class="grid grid-cols-3 m-5 gap-4">
-    <div class="">
-      <h3 class="ml-4 text-green-300">Open</h3>
-      <template v-for="project of projects.data" :key="project">
-        <ProjectCard
-          :user="user"
-          :project="project"
-          v-if="project.status === 'open'"
-        ></ProjectCard>
-      </template>
+  <div class="grid grid-cols-4 m-5 gap-4">
+    <div>
+      <h3 class="mb-2 font-medium">Open</h3>
+      <ul role="list" class="grid grid-cols-1 gap-y-4">
+        <template v-for="project of projects.data" :key="project">
+          <ProjectCard
+            :user="user"
+            :project="project"
+            v-if="project.status === 'open'"
+          ></ProjectCard>
+        </template>
+      </ul>
     </div>
     <div>
-      <h3 class="ml-4 text-green-500">In Progress</h3>
-      <template v-for="project of projects.data" :key="project">
-        <ProjectCard
-          :user="user"
-          :project="project"
-          v-if="project.status === 'in_progress'"
-        ></ProjectCard>
-      </template>
+      <h3 class="mb-2 font-medium">In Progress</h3>
+      <ul role="list" class="grid grid-cols-1 gap-y-4">
+        <template v-for="project of projects.data" :key="project">
+          <ProjectCard
+            :user="user"
+            :project="project"
+            v-if="project.status === 'in_progress'"
+          ></ProjectCard>
+        </template>
+      </ul>
     </div>
     <div>
-      <h3 class="ml-4 text-green-700">Completed</h3>
-      <template v-for="project of projects.data" :key="project">
-        <ProjectCard
-          :user="user"
-          :project="project"
-          v-if="project.status === 'completed'"
-        ></ProjectCard>
-      </template>
+      <h3 class="mb-2 font-medium">Completed</h3>
+      <ul role="list" class="grid grid-cols-1 gap-y-4">
+        <template v-for="project of projects.data" :key="project">
+          <ProjectCard
+            :user="user"
+            :project="project"
+            v-if="project.status === 'completed'"
+          ></ProjectCard>
+        </template>
+      </ul>
     </div>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-y-3">
+  <div class="flex flex-col gap-y-3 hola">
     <div class="flex justify-between">
       <select
         v-model="params.perPage"
@@ -41,14 +41,14 @@
             taskId = false;
           "
           id="form"
-          class="px-20 text-black hover:bg-blue-200/60 font-sans bg-blue-200 ring-black ring-3 justify-items-end gap-x-2 hover:opacity-90 border-gray-400 border rounded-full py-2"
+          class="px-20 bg-indigo-700 hover:bg-indigo-600 text-white ring-black ring-3 justify-items-end gap-x-2 font-sans font-medium hover:opacity-90 border rounded-full py-2"
         >
           Create Task
         </button>
       </div>
     </div>
     <table
-      class="min-w-full divide-y divide-blue-100 rounded-md px-3 border-2 border-gray-300"
+      class="min-w-full divide-y divide-blue-100 rounded-md px-3 border-2 border-gray-300 bg-white"
     >
       <tr class="p-4">
         <th class="py-3.5 text-sm font-semibold text-gray-900" scope="col">
@@ -276,7 +276,7 @@
               params.currentPage === 1 ? 'opacity-50' : 'hover:bg-gray-100'
             "
             :disabled="params.currentPage === 1"
-            class="relative inline-flex items-centre bg-white rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0"
+            class="relative inline-flex items-center bg-white rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 focus:z-20 focus:outline-offset-0"
             @click="params.currentPage--"
           >
             <span class="sr-only">Previous</span>

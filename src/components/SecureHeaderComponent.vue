@@ -65,23 +65,43 @@
               <div class="flex space-x-4">
                 <a
                   @click="$router.push('/dashboard')"
-                  class="bg-gray-900 text-white cursor-pointer rounded-md px-3 py-2 text-sm font-medium"
+                  class="text-gray-300 cursor-pointer rounded-md px-3 py-2 text-sm font-medium"
+                  :class="
+                    $route.name === 'dashboard'
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                  "
                   aria-current="page"
                   >Dashboard</a
                 >
                 <a
                   @click="$router.push('/team')"
-                  class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                  class="text-gray-300 cursor-pointer hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                  :class="
+                    $route.name === 'team'
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                  "
                   >Team</a
                 >
                 <a
                   @click="$router.push('/projects')"
-                  class="text-gray-300 cursor-pointer hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                  class="cursor-pointer rounded-md px-3 py-2 text-sm font-medium"
+                  :class="
+                    $route.name === 'projects'
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                  "
                   >Projects</a
                 >
                 <a
                   @click="$router.push('/tasks')"
-                  class="text-gray-300 cursor-pointer hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                  class="cursor-pointer rounded-md px-3 py-2 text-sm font-medium"
+                  :class="
+                    $route.name === 'tasks'
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                  "
                   >Tasks</a
                 >
               </div>

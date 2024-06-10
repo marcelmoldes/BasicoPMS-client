@@ -1,9 +1,9 @@
 <template>
-  <div class="max-w-7xl mx-auto">
+  <div class="max-w-7xl mx-4 md:mx-auto">
     <div class="justify-center">
       <kpi-dashlet :user="user"></kpi-dashlet>
     </div>
-    <div class="grid m-12 grid-cols-1 md:grid-cols-2 gap-1">
+    <div class="grid gap-7 my-8 grid-cols-1 md:grid-cols-2">
       <tasks-dashlet :user="user" :tasks="tasks.data"> </tasks-dashlet>
       <projects-dashlet
         :user="user"
@@ -30,15 +30,33 @@ export default {
     return {
       tasks: [],
       projects: [],
+      meta: {},
+      params: {
+        searchString: "",
+        sortBy: "createdAt",
+        sortOrder: "desc",
+        currentPage: 1,
+        perPage: "5",
+      },
     };
+  },
+  watch: {
+    params: {
+      handler() {
+        this.loadProjects();
+      },
+      deep: true,
+    },
   },
   async mounted() {
     await this.loadTasks();
     await this.loadProjects();
   },
+
   methods: {
     async loadProjects() {
       const response = await axios.get("http://localhost:3000/projects", {
+        params: this.params,
         headers: {
           Authorization: this.user ? "Bearer " + this.user.token : null,
         },
@@ -51,6 +69,7 @@ export default {
     },
     async loadTasks() {
       const response = await axios.get("http://localhost:3000/tasks", {
+        params: this.params,
         headers: {
           Authorization: this.user ? "Bearer " + this.user.token : null,
         },

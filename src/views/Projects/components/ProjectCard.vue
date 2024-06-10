@@ -1,29 +1,22 @@
 <template>
-  <div class="bg-gray-50 justify-center m-3">
-    <a
-      href="#"
-      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-    >
-      <h5
-        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-      >
-        {{ project.name }}
-      </h5>
-      <h5
-        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-      ></h5>
-      <h5
-        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-      >
-        {{ formatters.formatDate(project.startDate) }}
-      </h5>
-      <h5
-        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-      >
-        {{ formatters.formatDate(project.endDate) }}
-      </h5>
-    </a>
-  </div>
+  <li class="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow">
+    <div class="flex w-full items-center justify-between space-x-6 p-6">
+      <div class="flex-1 truncate">
+        <div class="flex items-center space-x-3">
+          <h3 class="truncate text-sm font-medium text-gray-900">
+            {{ project.name }}
+          </h3>
+          <span
+            class="inline-flex flex-shrink-0 items-center rounded-full bg-gray-50 px-1.5 py-0.5 text-xs font-medium text-gray-700 ring-1 ring-inset ring-gray-600/20"
+            >{{ formatters.formatDate(project.startDate) }}</span
+          >
+        </div>
+        <p class="mt-1 truncate text-sm text-gray-500">
+          {{ project.description }}
+        </p>
+      </div>
+    </div>
+  </li>
 </template>
 <script>
 import formatters from "@/helpers/formatters";

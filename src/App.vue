@@ -10,7 +10,11 @@
   />
 </template>
 
-<style></style>
+<style>
+body {
+  @apply bg-gray-50;
+}
+</style>
 <script>
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import SecuredHeaderComponent from "@/components/SecureHeaderComponent.vue";

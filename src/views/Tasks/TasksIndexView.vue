@@ -1,13 +1,18 @@
 <template>
-  <div class="max-w-7xl mx-auto mt-20 px-6 relative">
-    <div class="">
-      <banner-heading @showCard="show = 'card'" @showGrid="show = 'grid'" />
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex justify-between items-center my-6">
+      <div class="text-3xl font-medium">Tasks</div>
+      <mode-selection-bar
+        :currentMode="mode"
+        @showCard="mode = 'card'"
+        @showGrid="mode = 'grid'"
+      />
     </div>
     <div class="justify-center">
-      <tasks-grid v-if="show === 'grid'" :user="user"></tasks-grid>
+      <tasks-grid v-if="mode === 'grid'" :user="user"></tasks-grid>
       <task-board
         @closeForm="showForm = false"
-        v-if="show === 'card'"
+        v-if="mode === 'card'"
         :user="user"
       ></task-board>
     </div>
@@ -16,17 +21,17 @@
 <script>
 import TasksGrid from "@/views/Tasks/components/TasksGrid.vue";
 import TaskBoard from "@/views/Tasks/TaskBoard.vue";
-import BannerHeading from "@/components/BannerHeading.vue";
+import ModeSelectionBar from "@/components/ModeSelectionBar.vue";
 export default {
   props: ["user"],
   data() {
     return {
-      show: "grid",
+      mode: "grid",
       showForm: false,
     };
   },
   components: {
-    BannerHeading,
+    ModeSelectionBar,
     TaskBoard,
     TasksGrid,
   },
