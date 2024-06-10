@@ -4,7 +4,7 @@
       <kpi-dashlet :user="user"></kpi-dashlet>
     </div>
     <div class="grid m-12 grid-cols-1 md:grid-cols-2 gap-1">
-      <tasks-dashlet :user="user" :tasks="tasks.data"></tasks-dashlet>
+      <tasks-dashlet :user="user" :tasks="tasks.data"> </tasks-dashlet>
       <projects-dashlet
         :user="user"
         :projects="projects.data"
@@ -28,13 +28,13 @@ export default {
   },
   data() {
     return {
-      projects: [],
       tasks: [],
+      projects: [],
     };
   },
-  mounted() {
-    this.loadProjects();
-    this.loadTasks();
+  async mounted() {
+    await this.loadTasks();
+    await this.loadProjects();
   },
   methods: {
     async loadProjects() {
@@ -49,7 +49,6 @@ export default {
         throw "error";
       }
     },
-
     async loadTasks() {
       const response = await axios.get("http://localhost:3000/tasks", {
         headers: {

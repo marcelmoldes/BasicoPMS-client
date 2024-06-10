@@ -47,8 +47,8 @@
             </tr>
           </thead>
 
-          <tbody v-for="task in tasks" :key="task">
-            <tr>
+          <tbody>
+            <tr v-for="task in tasks" :key="task">
               <td class="relative py-4 pl-4 pr-3 text-sm sm:pl-6">
                 {{ task.name }}
                 <div
@@ -57,10 +57,14 @@
               </td>
               <td
                 class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell"
-              ></td>
+              >
+                {{ task.startDate }}
+              </td>
               <td
                 class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell"
-              ></td>
+              >
+                {{ task.dueDate }}
+              </td>
               <td
                 class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell"
               >
@@ -68,9 +72,7 @@
               </td>
               <td
                 class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell"
-              >
-                {{ user.firstName }}
-              </td>
+              ></td>
               <td class="px-3 py-3.5 text-sm text-gray-500"></td>
 
               <td

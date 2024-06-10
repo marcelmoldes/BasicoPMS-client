@@ -41,7 +41,7 @@
             taskId = false;
           "
           id="form"
-          class="px-20 text-gray-500 hover:text-white hover:bg-gray-400 ring-black ring-3 justify-items-end gap-x-2 font-semibold hover:opacity-90 border-gray-400 border rounded-full py-2"
+          class="px-20 text-black hover:bg-blue-200/60 font-sans bg-blue-200 ring-black ring-3 justify-items-end gap-x-2 hover:opacity-90 border-gray-400 border rounded-full py-2"
         >
           Create Task
         </button>
@@ -224,8 +224,6 @@
           </td>
         </tr>
         <tr
-          @mouseenter="showButton = true"
-          @mouseleave="showButton = false"
           @click="
             showForm = true;
             taskId = task.id;
@@ -272,7 +270,7 @@
           </p>
         </div>
 
-        <div class="">
+        <div class="m-2">
           <button
             :class="
               params.currentPage === 1 ? 'opacity-50' : 'hover:bg-gray-100'

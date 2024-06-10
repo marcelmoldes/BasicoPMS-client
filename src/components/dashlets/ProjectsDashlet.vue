@@ -57,10 +57,14 @@
               </td>
               <td
                 class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell"
-              ></td>
+              >
+                {{ formatters.formatDate(project.startDate) }}
+              </td>
               <td
                 class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell"
-              ></td>
+              >
+                {{ formatters.formatDate(project.endDate) }}
+              </td>
               <td
                 class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell"
               >
@@ -90,8 +94,14 @@
 </template>
 
 <script>
+import formatters from "@/helpers/formatters";
 export default {
   props: ["projects", "user"],
+  data() {
+    return {
+      formatters,
+    };
+  },
 };
 </script>
 

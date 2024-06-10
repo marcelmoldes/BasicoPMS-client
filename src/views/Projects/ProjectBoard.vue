@@ -1,33 +1,33 @@
 <template>
-  <div class="grid grid-cols-4 m-5 gap-4">
+  <div class="grid grid-cols-3 m-5 gap-4">
     <div class="">
       <h3 class="ml-4 text-green-300">Open</h3>
-      <template v-for="task of tasks.data" :key="task">
-        <TaskCard
+      <template v-for="project of projects.data" :key="project">
+        <ProjectCard
           :user="user"
-          :task="task"
-          v-if="task.status === 'open'"
-        ></TaskCard>
+          :project="project"
+          v-if="project.status === 'open'"
+        ></ProjectCard>
       </template>
     </div>
     <div>
       <h3 class="ml-4 text-green-500">In Progress</h3>
-      <template v-for="task of tasks.data" :key="task">
-        <TaskCard
+      <template v-for="project of projects.data" :key="project">
+        <ProjectCard
           :user="user"
-          :task="task"
-          v-if="task.status === 'in_progress'"
-        ></TaskCard>
+          :project="project"
+          v-if="project.status === 'in_progress'"
+        ></ProjectCard>
       </template>
     </div>
     <div>
       <h3 class="ml-4 text-green-700">Completed</h3>
-      <template v-for="task of tasks.data" :key="task">
-        <TaskCard
+      <template v-for="project of projects.data" :key="project">
+        <ProjectCard
           :user="user"
-          :task="task"
-          v-if="task.status === 'completed'"
-        ></TaskCard>
+          :project="project"
+          v-if="project.status === 'completed'"
+        ></ProjectCard>
       </template>
     </div>
   </div>
@@ -35,15 +35,15 @@
 <script>
 import axios from "axios";
 import formatters from "@/helpers/formatters";
-import TaskCard from "@/views/Tasks/components/TaskCard.vue";
+import ProjectCard from "@/views/Projects/components/ProjectCard.vue";
 export default {
-  components: { TaskCard },
+  components: { ProjectCard },
   props: ["user"],
-  emits: ["editTask", "createTask"],
+  emits: ["editProject", "createproject"],
   data() {
     return {
       formatters,
-      tasks: [],
+      projects: [],
       meta: {},
       params: {
         searchString: "",
@@ -53,30 +53,30 @@ export default {
         perPage: "10",
       },
       showForm: false,
-      taskId: false,
+      projectId: false,
     };
   },
   watch: {
     params: {
       handler() {
-        this.loadTasks();
+        this.loadProjects();
       },
       deep: true,
     },
   },
   async mounted() {
-    await this.loadTasks();
+    await this.loadProjects();
   },
   methods: {
-    async loadTasks() {
-      const response = await axios.get("http://localhost:3000/tasks", {
+    async loadProjects() {
+      const response = await axios.get("http://localhost:3000/projects", {
         params: this.params,
         headers: {
           Authorization: this.user ? "Bearer " + this.user.token : null,
         },
       });
       if (response.data) {
-        this.tasks = response.data;
+        this.projects = response.data;
       } else {
         throw "error";
       }
