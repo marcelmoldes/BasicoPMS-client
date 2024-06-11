@@ -18,17 +18,17 @@
             <dd
               class="order-first text-3xl font-semibold tracking-tight text-indigo-600"
             >
-              99.9%
+              {{ analytics.openTasks }}
             </dd>
           </div>
           <div class="flex border border-indigo-400 bg-indigo-100 flex-col p-8">
             <dt class="text-sm font-semibold leading-6 text-indigo-600">
-              Open Tasks
+              Closed Tasks
             </dt>
             <dd
               class="order-first text-3xl font-semibold tracking-tight text-indigo-600"
             >
-              99.9%
+              {{ analytics.closedTasks }}
             </dd>
           </div>
           <div class="flex border border-indigo-400 bg-indigo-200 flex-col p-8">
@@ -38,17 +38,17 @@
             <dd
               class="order-first text-3xl font-semibold tracking-tight text-indigo-600"
             >
-              99.9%
+              {{ analytics.openProjects }}
             </dd>
           </div>
           <div class="flex border border-indigo-400 bg-indigo-200 flex-col p-8">
             <dt class="text-sm font-semibold leading-6 text-indigo-600">
-              Open Projects
+              Closed Projects
             </dt>
             <dd
               class="order-first text-3xl font-semibold tracking-tight text-indigo-600"
             >
-              99.9%
+              {{ analytics.closedProjects }}
             </dd>
           </div>
         </dl>
@@ -58,9 +58,31 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   props: ["user"],
-  data() {},
+  data() {
+    return {
+      analytics: {},
+    };
+  },
+  async mounted() {
+    await this.getKpis();
+  },
+  methods: {
+    async getKpis() {
+      const response = await axios.get("http://localhost:3000/analytics", {
+        headers: {
+          Authorization: this.user ? "Bearer " + this.user.token : null,
+        },
+      });
+      if (response.data) {
+        this.analytics = response.data;
+      } else {
+        throw "error";
+      }
+    },
+  },
 };
 </script>
 
