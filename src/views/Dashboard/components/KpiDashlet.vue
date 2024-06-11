@@ -9,46 +9,46 @@
     <div class="mx-auto">
       <div class="mx-auto max-w-4xl lg:max-w-none">
         <dl
-          class="grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-4"
+          class="grid grid-cols-1 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-4"
         >
-          <div class="flex bg-indigo-300 hover:bg-indigo-200 flex-col p-8">
-            <dt class="text-sm font-semibold leading-6 text-white">
-              Total Tasks
-            </dt>
-            <dd
-              class="order-first text-3xl font-semibold tracking-tight text-gray-600"
-            >
-              8,000+
-            </dd>
-          </div>
-          <div class="flex bg-indigo-300 hover:bg-indigo-200 flex-col p-8">
-            <dt class="text-sm font-semibold leading-6 text-white">
-              Total Projects
-            </dt>
-            <dd
-              class="order-first text-3xl font-semibold tracking-tight text-gray-600"
-            >
-              3%
-            </dd>
-          </div>
-          <div class="flex bg-indigo-300 hover:bg-indigo-200 flex-col p-8">
-            <dt class="text-sm font-semibold leading-6 text-white">
+          <div class="flex border border-indigo-400 bg-indigo-100 flex-col p-8">
+            <dt class="text-sm font-semibold leading-6 text-indigo-600">
               Open Tasks
             </dt>
             <dd
-              class="order-first text-3xl font-semibold tracking-tight text-gray-600"
+              class="order-first text-3xl font-semibold tracking-tight text-indigo-600"
             >
               99.9%
             </dd>
           </div>
-          <div class="flex bg-indigo-300 hover:bg-indigo-200 flex-col p-8">
-            <dt class="text-sm /60 font-semibold leading-6 text-white">
-              End Tasks
+          <div class="flex border border-indigo-400 bg-indigo-100 flex-col p-8">
+            <dt class="text-sm font-semibold leading-6 text-indigo-600">
+              Open Tasks
             </dt>
             <dd
-              class="order-first text-3xl font-semibold tracking-tight text-gray-600"
+              class="order-first text-3xl font-semibold tracking-tight text-indigo-600"
             >
-              $70M
+              99.9%
+            </dd>
+          </div>
+          <div class="flex border border-indigo-400 bg-indigo-200 flex-col p-8">
+            <dt class="text-sm font-semibold leading-6 text-indigo-600">
+              Open Projects
+            </dt>
+            <dd
+              class="order-first text-3xl font-semibold tracking-tight text-indigo-600"
+            >
+              99.9%
+            </dd>
+          </div>
+          <div class="flex border border-indigo-400 bg-indigo-200 flex-col p-8">
+            <dt class="text-sm font-semibold leading-6 text-indigo-600">
+              Open Projects
+            </dt>
+            <dd
+              class="order-first text-3xl font-semibold tracking-tight text-indigo-600"
+            >
+              99.9%
             </dd>
           </div>
         </dl>

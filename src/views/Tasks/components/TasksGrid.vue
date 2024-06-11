@@ -341,7 +341,6 @@ import TaskForm from "@/views/Tasks/components/TaskForm.vue";
 export default {
   props: ["user"],
   components: { TaskForm, ChevronUpIcon, ChevronDownIcon },
-  emits: ["editTask", "createTask"],
   data() {
     return {
       formatters,

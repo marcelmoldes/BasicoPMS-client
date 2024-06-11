@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-4 m-5 gap-4">
+  <div class="grid grid-cols-4 my-5 gap-4">
     <div>
       <h3 class="mb-2 font-medium">Open</h3>
       <ul role="list" class="grid grid-cols-1 gap-y-4">
