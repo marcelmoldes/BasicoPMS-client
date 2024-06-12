@@ -4,8 +4,10 @@
       <kpi-dashlet :user="user"></kpi-dashlet>
     </div>
     <div class="grid gap-7 my-8 grid-cols-1 md:grid-cols-2">
-      <tasks-dashlet :user="user" :tasks="tasks.data"> </tasks-dashlet>
+      <tasks-dashlet :spin="spin" :user="user" :tasks="tasks.data">
+      </tasks-dashlet>
       <projects-dashlet
+        :spin="spin"
         :user="user"
         :projects="projects.data"
       ></projects-dashlet>
@@ -30,6 +32,7 @@ export default {
     return {
       tasks: [],
       projects: [],
+      spin: false,
       meta: {},
       params: {
         searchString: "",
@@ -55,6 +58,7 @@ export default {
 
   methods: {
     async loadProjects() {
+      this.spin = true;
       const response = await axios.get("http://localhost:3000/projects", {
         params: this.params,
         headers: {
@@ -66,8 +70,10 @@ export default {
       } else {
         throw "error";
       }
+      this.spin = false;
     },
     async loadTasks() {
+      this.spin = true;
       const response = await axios.get("http://localhost:3000/tasks", {
         params: this.params,
         headers: {
@@ -79,6 +85,7 @@ export default {
       } else {
         throw "error";
       }
+      this.spin = false;
     },
   },
 };

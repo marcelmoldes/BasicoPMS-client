@@ -31,7 +31,7 @@
           <ProjectCard
             :user="user"
             :project="project"
-            v-if="project.status === 'completed'"
+            v-if="project.status === 'closed'"
           ></ProjectCard>
         </template>
       </ul>

@@ -25,13 +25,13 @@
       </ul>
     </div>
     <div>
-      <h3 class="mb-2 font-medium">In Progress</h3>
+      <h3 class="mb-2 font-medium">Completed</h3>
       <ul role="list" class="grid grid-cols-1 gap-y-4">
         <template v-for="task of tasks.data" :key="task">
           <TaskCard
             :user="user"
             :task="task"
-            v-if="task.status === 'completed'"
+            v-if="task.status === 'closed'"
           ></TaskCard>
         </template>
       </ul>
