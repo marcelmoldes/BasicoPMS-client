@@ -29,6 +29,7 @@
           Card
         </button>
         <button
+          @click="$emit('showCalendar')"
           class="rounded-md px-3 py-2 text-sm font-medium"
           :class="
             currentMode === 'calendar'
@@ -46,7 +47,7 @@
 <script>
 export default {
   props: ["currentMode"],
-  emits: ["showCard", "showGrid"],
+  emits: ["showCard", "showGrid", "showCalendar"],
   data() {
     return {};
   },

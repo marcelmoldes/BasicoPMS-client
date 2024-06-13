@@ -59,17 +59,14 @@
                     >
                       <div class="sm:col-span-3">
                         <label
-                          for="first-name"
+                          for="name"
                           class="block text-sm font-medium leading-6 text-gray-900"
                           >Name</label
                         >
                         <div class="mt-2">
                           <input
                             v-model="project.name"
-                            type="text"
-                            name="first-name"
-                            id="first-name"
-                            autocomplete="given-name"
+                            id="name"
                             class="block font-sans px-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             :class="
                               errors.name ? 'ring-red-500' : 'ring-gray-300'
@@ -85,17 +82,14 @@
                       </div>
                       <div class="sm:col-span-3">
                         <label
-                          for="first-name"
+                          for="status"
                           class="block text-sm font-medium leading-6 text-gray-900"
                           >Status</label
                         >
                         <div class="mt-2">
                           <input
                             v-model="project.status"
-                            type="text"
-                            name="first-name"
-                            id="first-name"
-                            autocomplete="given-name"
+                            id="status"
                             class="block font-sans px-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             :class="
                               errors.status ? 'ring-red-500' : 'ring-gray-300'
@@ -109,38 +103,9 @@
                           </div>
                         </div>
                       </div>
-
                       <div class="sm:col-span-3">
                         <label
-                          for="last-name"
-                          class="block text-sm font-medium leading-6 text-gray-900"
-                          >Project</label
-                        >
-                        <div class="mt-2">
-                          <input
-                            v-model="project.projectId"
-                            type="text"
-                            name="last-name"
-                            id="last-name"
-                            autocomplete="family-name"
-                            class="block font-sans px-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            :class="
-                              errors.projectId
-                                ? 'ring-red-500'
-                                : 'ring-gray-300'
-                            "
-                          />
-                          <div
-                            class="text-red-500 text-sm mt-1"
-                            v-if="errors.projectId"
-                          >
-                            {{ errors.projectId }}
-                          </div>
-                        </div>
-                      </div>
-                      <div class="sm:col-span-3">
-                        <label
-                          for="last-name"
+                          for="startDate"
                           class="block text-sm font-medium leading-6 text-gray-900"
                           >Start Date</label
                         >
@@ -148,9 +113,7 @@
                           <input
                             v-model="project.startDate"
                             type="date"
-                            name="last-name"
-                            id="last-name"
-                            autocomplete="family-name"
+                            id="startDate"
                             class="block font-sans w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             :class="
                               errors.startDate
@@ -169,7 +132,7 @@
 
                       <div class="sm:col-span-3">
                         <label
-                          for="last-name"
+                          for="endDate"
                           class="block text-sm font-medium leading-6 text-gray-900"
                           >End Date</label
                         >
@@ -177,9 +140,7 @@
                           <input
                             v-model="project.endDate"
                             type="date"
-                            name="last-name"
-                            id="last-name"
-                            autocomplete="family-name"
+                            id="endDate"
                             class="block font-sans w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             :class="
                               errors.endDate ? 'ring-red-500' : 'ring-gray-300'
@@ -193,28 +154,10 @@
                           </div>
                         </div>
                       </div>
-
-                      <div class="sm:col-span-3">
-                        <label
-                          for="last-name"
-                          class="block text-sm font-medium leading-6 text-gray-900"
-                          >Owner</label
-                        >
-                        <div class="mt-2">
-                          <input
-                            type="text"
-                            name="last-name"
-                            id="last-name"
-                            autocomplete="family-name"
-                            class="block font-sans w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                          />
-                        </div>
-                      </div>
-
                       <div class="sm:col-span-3">
                         <div>
                           <label
-                            for="comment"
+                            for="description"
                             class="block text-sm font-medium leading-6 text-gray-900"
                             >Description</label
                           >
@@ -222,8 +165,7 @@
                             <textarea
                               v-model="project.description"
                               rows="4"
-                              name="comment"
-                              id="comment"
+                              id="description"
                               class="font-sans w-40 px-2 mr-4 rounded-md border-0 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                               :class="
                                 errors.description

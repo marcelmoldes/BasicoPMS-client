@@ -6,6 +6,7 @@
         :currentMode="mode"
         @showCard="mode = 'card'"
         @showGrid="mode = 'grid'"
+        @showCalendar="mode = 'calendar'"
       />
     </div>
     <div class="justify-center">
@@ -15,6 +16,7 @@
         v-if="mode === 'card'"
         :user="user"
       ></task-board>
+      <task-calendar v-if="mode === 'calendar'" :user="user"></task-calendar>
     </div>
   </div>
 </template>
@@ -22,6 +24,7 @@
 import TasksGrid from "@/views/Tasks/components/TasksGrid.vue";
 import TaskBoard from "@/views/Tasks/TaskBoard.vue";
 import ModeSelectionBar from "@/components/ModeSelectionBar.vue";
+import TaskCalendar from "@/views/Tasks/components/TaskCalendar.vue";
 export default {
   props: ["user"],
   data() {
@@ -31,6 +34,7 @@ export default {
     };
   },
   components: {
+    TaskCalendar,
     ModeSelectionBar,
     TaskBoard,
     TasksGrid,
