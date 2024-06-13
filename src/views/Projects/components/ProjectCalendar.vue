@@ -19,7 +19,7 @@ let calendarApp;
 const loaded = ref(false);
 
 onBeforeMount(async () => {
-  const response = await axios.get("http://localhost:3000/tasks/calendar", {
+  const response = await axios.get("http://localhost:3000/projects/calendar", {
     headers: {
       Authorization: props.user ? "Bearer " + props.user.token : null,
     },
