@@ -1,104 +1,130 @@
 <template>
   <div>
-    <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
-      <div
-        class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
-        aria-hidden="true"
-      ></div>
-      <div class="mx-auto max-w-2xl text-center">
-        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-          My Account
+    <div class="flex min-h-full justify-center lg:px-8">
+      <div class="sm:w-full sm:max-w-[480px]">
+        <h2
+          class="text-center m-6 ml-24 flex text-xl font-bold leading-9 tracking-tight text-indigo-500"
+        >
+          Change Your Personal Information
         </h2>
-        <p class="mt-2 text-lg leading-8 text-gray-600">
-          Change and see your information
-        </p>
+
+        <div class="bg-gray-50 px-6 mt-2 py-12 shadow sm:rounded-lg sm:px-12">
+          <form action="#" class="space-y-6" method="POST">
+            <div>
+              <label
+                class="block text-sm font-medium leading-6 text-gray-900"
+                for="email"
+                >First Name</label
+              >
+              <input
+                v-model="userData.firstName"
+                :class="errors.firstName ? 'border border-red-300' : 'border-0'"
+                class="block border-2 w-full p-2 rounded-md py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                required
+              />
+              <div v-if="errors.firstName" class="text-sm text-red-400">
+                {{ errors.firstName }}
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium leading-6 text-gray-900"
+                >Last Name</label
+              >
+
+              <input
+                v-model="userData.lastName"
+                :class="errors.lastName ? 'border border-red-300' : 'border-0'"
+                class="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                required
+              />
+              <div v-if="errors.lastName" class="text-sm text-red-400">
+                {{ errors.lastName }}
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium leading-6 text-gray-900"
+                >Email</label
+              >
+              <input
+                v-model="userData.email"
+                :class="errors.email ? 'border border-red-300' : 'border-0'"
+                class="block p-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                required
+                type="email"
+              />
+              <div v-if="errors.email" class="text-sm text-red-400">
+                {{ errors.email }}
+              </div>
+            </div>
+            <div>
+              <button
+                class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                type="button"
+                @click="save"
+              >
+                Save
+              </button>
+            </div>
+          </form>
+          <div></div>
+        </div>
       </div>
-      <form
-        action="#"
-        method="POST"
-        class="mx-auto bg-blue-200 rounded-xl p-20 mt-16 max-w-xl sm:mt-20"
-      >
-        <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-          <div>
-            <label
-              for="first-name"
-              class="block text-sm font-semibold leading-6 text-gray-900"
-              >First name</label
-            >
-            <div class="mt-2.5">
-              <input
-                type="text"
-                name="first-name"
-                id="first-name"
-                autocomplete="given-name"
-                class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-          <div>
-            <label
-              for="last-name"
-              class="block text-sm font-semibold leading-6 text-gray-900"
-              >Last name</label
-            >
-            <div class="mt-2.5">
-              <input
-                type="text"
-                name="last-name"
-                id="last-name"
-                autocomplete="family-name"
-                class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-          <div>
-            <label
-              for="first-name"
-              class="block text-sm font-semibold leading-6 text-gray-900"
-              >Email</label
-            >
-            <div class="mt-2.5">
-              <input
-                type="text"
-                name="first-name"
-                id="first-name"
-                autocomplete="given-name"
-                class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-          <div>
-            <label
-              for="last-name"
-              class="block text-sm font-semibold leading-6 text-gray-900"
-              >Team</label
-            >
-            <div class="mt-2.5">
-              <input
-                type="text"
-                name="last-name"
-                id="last-name"
-                autocomplete="family-name"
-                class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="mt-10">
-          <button
-            type="submit"
-            class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Save
-          </button>
-        </div>
-      </form>
     </div>
   </div>
 </template>
-
 <script>
-export default {};
+import axios from "axios";
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
+export default {
+  props: ["user"],
+  data() {
+    return {
+      userData: {
+        firstName: "f",
+        lastName: "ff",
+        email: "",
+      },
+      errors: {},
+    };
+  },
+  async mounted() {
+    await this.loadData();
+  },
+  methods: {
+    async loadData() {
+      let response = await axios.get(
+        "http://localhost:3000/users/" + this.user.id,
+        {
+          headers: {
+            Authorization: this.user ? "Bearer " + this.user.token : null,
+          },
+        }
+      );
+      this.userData = response.data;
+    },
+    async save() {
+      let response = await axios.patch(
+        "http://localhost:3000/users/" + this.user.id,
+        this.userData,
+        {
+          headers: {
+            Authorization: this.user ? "Bearer " + this.user.token : null,
+          },
+        }
+      );
+      if (response.data) {
+        Toastify({
+          text: "User Updated",
+          position: "center",
+          duration: 1000,
+        }).showToast();
+        await this.loadData();
+      } else {
+        this.errors = response.data.errors;
+      }
+    },
+  },
+};
 </script>
-
-<style lang="scss" scoped></style>
