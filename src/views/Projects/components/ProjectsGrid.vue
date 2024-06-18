@@ -170,11 +170,10 @@
           </a>
         </th>
       </tr>
+
       <tbody v-if="!spin" class="divide-y divide-blue-100">
         <tr v-if="projects.length === 0">
-          <td colspan="8" class="text-center text-gray-500 py-2">
-            No projects found
-          </td>
+          <td class="text-center py-2" colspan="9">No projects found</td>
         </tr>
         <tr
           @click="
@@ -182,7 +181,7 @@
             projectId = project.id;
           "
           class="hover:bg-gray-100 cursor-pointer"
-          v-for="project in projects.data"
+          v-for="project in projects"
           :key="project"
         >
           <td
@@ -206,7 +205,7 @@
       </tbody>
       <tbody v-else>
         <tr>
-          <td class="text-center py-4" colspan="9">
+          <td class="text-center py-4" colspan="5">
             <svg
               aria-hidden="true"
               class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
@@ -347,7 +346,7 @@ export default {
         },
       });
       if (response.data) {
-        this.projects = response.data;
+        this.projects = response.data.data;
         this.meta = response.data.meta;
       } else {
         throw "error";

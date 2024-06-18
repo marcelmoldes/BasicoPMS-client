@@ -36,7 +36,11 @@
             </th>
           </tr>
         </thead>
+
         <tbody v-if="!spin">
+          <tr v-if="projects.length === 0">
+            <td class="text-center py-4" colspan="3">No projects found</td>
+          </tr>
           <tr v-for="project in projects" :key="project">
             <td class="relative py-4 pl-4 pr-3 text-sm sm:pl-6">
               {{ project.name }}
@@ -53,6 +57,7 @@
             </td>
           </tr>
         </tbody>
+
         <tbody v-else>
           <tr>
             <td class="text-center py-4" colspan="3">

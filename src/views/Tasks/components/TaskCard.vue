@@ -1,5 +1,8 @@
 <template>
   <li class="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow">
+    <div v-if="tasks.length === 0">
+      <h1 colspan="8" class="text-center py-2">No tasks found</h1>
+    </div>
     <div class="flex w-full items-center justify-between space-x-6 p-6">
       <div class="flex-1 truncate">
         <div class="flex items-center space-x-3">

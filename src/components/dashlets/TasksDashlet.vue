@@ -39,6 +39,9 @@
         </thead>
 
         <tbody v-if="!spin">
+          <tr v-if="tasks.length === 0">
+            <td class="text-center py-4" colspan="3">No tasks found</td>
+          </tr>
           <tr v-for="task in tasks" :key="task">
             <td class="relative py-4 pl-4 pr-3 text-sm sm:pl-6">
               {{ task.name }}

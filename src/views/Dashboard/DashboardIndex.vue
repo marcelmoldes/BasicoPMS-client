@@ -4,12 +4,11 @@
       <kpi-dashlet :user="user"></kpi-dashlet>
     </div>
     <div class="grid gap-7 my-8 grid-cols-1 md:grid-cols-2">
-      <tasks-dashlet :spin="spin" :user="user" :tasks="tasks.data">
-      </tasks-dashlet>
+      <tasks-dashlet :spin="spin" :user="user" :tasks="tasks"> </tasks-dashlet>
       <projects-dashlet
         :spin="spin"
         :user="user"
-        :projects="projects.data"
+        :projects="projects"
       ></projects-dashlet>
     </div>
   </div>
@@ -66,7 +65,7 @@ export default {
         },
       });
       if (response.data) {
-        this.projects = response.data;
+        this.projects = response.data.data;
       } else {
         throw "error";
       }
@@ -81,7 +80,7 @@ export default {
         },
       });
       if (response.data) {
-        this.tasks = response.data;
+        this.tasks = response.data.data;
       } else {
         throw "error";
       }

@@ -219,9 +219,7 @@
       </tr>
       <tbody v-if="!spin" class="divide-y divide-blue-100">
         <tr v-if="tasks.length === 0">
-          <td colspan="8" class="text-center text-gray-500 py-2">
-            No tasks found
-          </td>
+          <td colspan="8" class="text-center py-2">No tasks found</td>
         </tr>
         <tr
           @click="
@@ -229,7 +227,7 @@
             taskId = task.id;
           "
           class="hover:bg-gray-100 cursor-pointer"
-          v-for="task in tasks.data"
+          v-for="task in tasks"
           :key="task"
         >
           <td
@@ -403,7 +401,7 @@ export default {
         },
       });
       if (response.data) {
-        this.tasks = response.data;
+        this.tasks = response.data.data;
         this.meta = response.data.meta;
       } else {
         throw "error";

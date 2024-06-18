@@ -25,6 +25,9 @@
       </div>
     </li>
   </div>
+  <div v-if="projects.length === 0">
+    <h1 class="text-center py-2" colspan="9">No projects found</h1>
+  </div>
 
   <project-form
     :user="user"
@@ -81,7 +84,7 @@ export default {
         },
       });
       if (response.data) {
-        this.projects = response.data;
+        this.projects = response.data.data;
       } else {
         throw "error";
       }
