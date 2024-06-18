@@ -83,21 +83,23 @@
 
                       <div class="sm:col-span-3">
                         <label
-                          for="projectId"
                           class="block text-sm font-medium leading-6 text-gray-900"
                           >Project</label
                         >
                         <div class="mt-2">
-                          <input
+                          <select
                             v-model="task.projectId"
-                            id="projectId"
-                            class="block font-sans px-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            :class="
-                              errors.projectId
-                                ? 'ring-red-500'
-                                : 'ring-gray-300'
-                            "
-                          />
+                            class="block bg-white w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                          >
+                            <option
+                              :value="option.value"
+                              v-for="option of projectOptions"
+                              :key="option"
+                            >
+                              {{ formatters.toProperCase(option.label) }}
+                            </option>
+                          </select>
+
                           <div
                             class="text-red-500 text-sm mt-1"
                             v-if="errors.projectId"
@@ -113,10 +115,13 @@
                           >Status</label
                         >
                         <div class="mt-2">
-                          <select v-model="task.status">
+                          <select
+                            v-model="task.projectId"
+                            class="block bg-white w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                          >
                             <option
                               :value="option.value"
-                              v-for="option of taskStatusOptions"
+                              v-for="option of statusOptions"
                               :key="option"
                             >
                               {{ option.label }}
@@ -131,21 +136,25 @@
                           </div>
                         </div>
                       </div>
-
                       <div class="sm:col-span-3">
                         <label
                           class="block text-sm font-medium leading-6 text-gray-900"
                           >Priority</label
                         >
                         <div class="mt-2">
-                          <input
+                          <select
                             v-model="task.priority"
-                            type="text"
-                            class="block font-sans w-full px-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            :class="
-                              errors.priority ? 'ring-red-500' : 'ring-gray-300'
-                            "
-                          />
+                            class="block bg-white w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                          >
+                            <option
+                              :value="option.value"
+                              v-for="option of priorityOptions"
+                              :key="option"
+                            >
+                              {{ option.label }}
+                            </option>
+                          </select>
+
                           <div
                             class="text-red-500 text-sm mt-1"
                             v-if="errors.priority"
@@ -154,6 +163,7 @@
                           </div>
                         </div>
                       </div>
+
                       <div class="sm:col-span-3">
                         <label
                           for="startDate"
@@ -331,14 +341,16 @@
 
 <script>
 import axios from "axios";
+import formatters from "../../../helpers/formatters";
 export default {
+  computed: {
+    formatters() {
+      return formatters;
+    },
+  },
   props: ["user", "taskId", "showViewButton"],
   data() {
     return {
-      taskStatusOptions: [
-        { label: "Open", value: "open" },
-        { label: "In Progress", value: "in_progress" },
-      ],
       task: {
         id: "",
         projectId: "",
@@ -352,14 +364,28 @@ export default {
         completionPercentage: "",
       },
       errors: {},
+      statusOptions: [],
+      priorityOptions: [],
+      projectOptions: [],
     };
   },
   async mounted() {
     if (this.taskId) {
       await this.loadData();
     }
+    await this.loadOptions();
   },
   methods: {
+    async loadOptions() {
+      const response = await axios.get("http://localhost:3000/tasks/config", {
+        headers: {
+          Authorization: this.user ? "Bearer " + this.user.token : null,
+        },
+      });
+      this.statusOptions = response.data.statusOptions;
+      this.priorityOptions = response.data.priorityOptions;
+      this.projectOptions = response.data.projectOptions;
+    },
     formatISODate(isoDate) {
       const date = new Date(isoDate);
       return date.toISOString().split("T")[0];
