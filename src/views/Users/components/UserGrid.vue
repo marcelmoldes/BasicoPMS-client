@@ -295,7 +295,7 @@
 import axios from "axios";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/vue/20/solid";
 import formatters from "@/helpers/formatters";
-import TeamForm from "@/views/Team/components/TeamForm.vue";
+import TeamForm from "@/views/Users/components/UserForm.vue";
 export default {
   props: ["user"],
   components: { TeamForm, ChevronDownIcon, ChevronUpIcon },

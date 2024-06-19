@@ -4,7 +4,7 @@ import RegisterIndex from "@/views/Register/RegisterIndexView.vue";
 import DashboardIndex from "@/views/Dashboard/DashboardIndex.vue";
 import TasksIndexView from "@/views/Tasks/TasksIndexView.vue";
 import ProjectsIndexView from "@/views/Projects/ProjectsIndexView.vue";
-import TeamIndexView from "@/views/Team/TeamIndexView.vue";
+import TeamIndexView from "@/views/Users/UserIndexView.vue";
 import PersonalAccountIndexView from "@/views/PersonalAccount/PersonalAccountIndexView.vue";
 import ForgotPasswordIndexView from "@/views/Login/ForgotPasswordIndexView.vue";
 const routes = [

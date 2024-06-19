@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import TeamGrid from "@/views/Team/components/TeamGrid.vue";
+import TeamGrid from "@/views/Users/components/UserGrid.vue";
 
 export default {
   props: ["user"],
