@@ -11,7 +11,7 @@
 
       <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
         <div
-          class="bg-gray-100 px-6 py-12 shadow-2xl shadow-blue-200 sm:rounded-lg sm:px-12"
+          class="bg-white px-6 py-12 shadow-2xl shadow-blue-200 sm:rounded-lg sm:px-12"
         >
           <form class="space-y-6" action="#" method="POST">
             <div>
@@ -60,11 +60,12 @@
                 >
               </div>
             </div>
-            <div
-              v-if="error"
-              class="bg-red-500 text-white py-1 text-center text-sm"
-            >
-              {{ error }}
+            <div>
+              <span
+                v-if="error"
+                class="rounded-full bg-red-50 text-md px-4 py-2 font-medium text-red-700 ring-1 ring-inset ring-red-600"
+                >{{ error }}</span
+              >
             </div>
             <div>
               <button

@@ -12,35 +12,35 @@
     <div class="relative aspect-[2/1] h-full md:-mx-8 xl:mx-0 xl:aspect-auto">
       <form
         @submit.prevent="forgotPassword"
-        class="flex flex-col gap-y-6 px-12 py-12 justify-center inset-0 w-ful rounded-md shadow-gray-600 bg-indigo-400 object-cover shadow-2xl"
+        class="flex flex-col gap-y-6 px-12 py-12 inset-0 w-ful rounded-md shadow-gray-600 bg-white object-cover shadow-2xl"
       >
-        <div class="flex flex-col gap-y-1">
+        <div>
           <label
-            class="text-sm mr-6 md:text-lg font-medium text-white ml-1"
             for="email"
-            >Email</label
+            class="block text-sm font-medium leading-6 text-gray-900"
+            >Email address</label
           >
-          <input
-            id="email"
-            v-model="email"
-            class="rounded-md px-5 border-2 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-            name="email"
-            placeholder="basicopms@example.com"
-            type="email"
-          />
+          <div class="mt-2">
+            <input
+              v-model="email"
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              class="block w-full rounded-md border-1 py-1.5 text-gray-900 pl-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            />
+          </div>
         </div>
-        <div
-          v-if="message"
-          class="text-lg p-1 rounded-lg bg-green-500 text-white"
-        >
-          {{ message }}
+
+        <div>
+          <span
+            v-if="error"
+            class="rounded-full bg-red-50 text-md px-4 py-2 font-medium text-red-700 ring-1 ring-inset ring-red-600"
+            >{{ error }}</span
+          >
         </div>
-        <div
-          v-if="error"
-          class="text-lg rounded-lg bg-red-600 p-1 font-sans text-white"
-        >
-          {{ error }}
-        </div>
+
         <button
           class="font-semibold border border-white rounded-full py-2 bg-indigo-500 hover:opacity-90 text-white"
           type="submit"
@@ -59,13 +59,11 @@ export default {
   data() {
     return {
       email: "",
-      message: null,
       error: null,
     };
   },
   methods: {
     async forgotPassword() {
-      this.message = null;
       this.error = null;
       try {
         const response = await axios.post(

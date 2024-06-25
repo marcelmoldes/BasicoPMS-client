@@ -8,7 +8,7 @@
           Change Your Personal Information
         </h2>
 
-        <div class="bg-gray-50 px-6 mt-2 py-12 shadow sm:rounded-lg sm:px-12">
+        <div class="bg-white px-6 mt-2 py-12 shadow sm:rounded-lg sm:px-12">
           <form action="#" class="space-y-6" method="POST">
             <div>
               <label
@@ -18,7 +18,7 @@
               >
               <input
                 v-model="userData.firstName"
-                :class="errors.firstName ? 'border border-red-300' : 'border-0'"
+                :class="errors.firstName ? 'border border-red-300' : ''"
                 class="block border-2 w-full p-2 rounded-md py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6"
                 required
               />
@@ -33,8 +33,8 @@
 
               <input
                 v-model="userData.lastName"
-                :class="errors.lastName ? 'border border-red-300' : 'border-0'"
-                class="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                :class="errors.lastName ? 'border border-red-300' : ''"
+                class="block border-2 w-full p-2 rounded-md py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6"
                 required
               />
               <div v-if="errors.lastName" class="text-sm text-red-400">
@@ -48,8 +48,8 @@
               >
               <input
                 v-model="userData.email"
-                :class="errors.email ? 'border border-red-300' : 'border-0'"
-                class="block p-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                :class="errors.email ? 'border border-red-300' : ''"
+                class="block border-2 w-full p-2 rounded-md py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6"
                 required
                 type="email"
               />
@@ -105,23 +105,25 @@ export default {
       this.userData = response.data;
     },
     async save() {
-      let response = await axios.patch(
-        "http://localhost:3000/users/" + this.user.id,
-        this.userData,
-        {
-          headers: {
-            Authorization: this.user ? "Bearer " + this.user.token : null,
-          },
+      try {
+        let response = await axios.patch(
+          "http://localhost:3000/users/" + this.user.id,
+          this.userData,
+          {
+            headers: {
+              Authorization: this.user ? "Bearer " + this.user.token : null,
+            },
+          }
+        );
+        if (response.data) {
+          Toastify({
+            text: "User Updated",
+            position: "center",
+            duration: 1000,
+          }).showToast();
+          await this.loadData();
         }
-      );
-      if (response.data) {
-        Toastify({
-          text: "User Updated",
-          position: "center",
-          duration: 1000,
-        }).showToast();
-        await this.loadData();
-      } else {
+      } catch ({ response }) {
         this.errors = response.data.errors;
       }
     },

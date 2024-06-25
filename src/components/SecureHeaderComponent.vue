@@ -142,20 +142,15 @@
                 tabindex="-1"
               >
                 <a
-                  @click="$router.push('/personal-account')"
+                  @click="
+                    $router.push('/personal-account');
+                    accountMenuOpen = false;
+                  "
                   class="block px-4 cursor-pointer py-2 text-sm text-gray-700"
                   role="menuitem"
                   tabindex="-1"
                   id="user-menu-item-0"
-                  >Your Profile</a
-                >
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700"
-                  role="menuitem"
-                  tabindex="-1"
-                  id="user-menu-item-1"
-                  >Settings</a
+                  >My Account</a
                 >
                 <button
                   type="button"
@@ -163,7 +158,10 @@
                   role="menuitem"
                   tabindex="-1"
                   id="user-menu-item-2"
-                  @click="$emit('logUserOut')"
+                  @click="
+                    $emit('logUserOut');
+                    accountMenuOpen = false;
+                  "
                 >
                   Log out
                 </button>

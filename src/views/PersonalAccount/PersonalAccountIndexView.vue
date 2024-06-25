@@ -1,8 +1,6 @@
 <template>
-  <div class="">
-    <h1 class="text-2xl mt-20 ml-44 font-bold text-indigo-500">
-      Personal Account
-    </h1>
+  <div class="max-w-7xl mx-4 md:mx-auto">
+    <h1 class="text-2xl mt-20 font-bold text-indigo-500">Personal Account</h1>
     <profile-details-form :user="user"></profile-details-form>
     <change-password-form :user="user"></change-password-form>
   </div>

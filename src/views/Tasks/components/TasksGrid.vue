@@ -11,6 +11,25 @@
       </select>
 
       <div class="flex gap-x-3 items-center">
+        <div class="flex gap-x-2 items-center">
+          <label class="block text-sm font-medium leading-6 text-gray-900"
+            >Project:</label
+          >
+          <select
+            class="rounded-md py-2.5 pl-3 pr-10 text-black ring-1 ring-inset ring-gray-300 focus:ring-2 sm:text-sm"
+            v-model="params.projectId"
+            @change="loadProjects"
+          >
+            <option></option>
+            <option
+              :value="project.id"
+              v-for="project in projects"
+              :key="project"
+            >
+              {{ formatters.toProperCase(project.name) }}
+            </option>
+          </select>
+        </div>
         <div class="relative">
           <div
             class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
@@ -48,7 +67,7 @@
       </div>
     </div>
     <table
-      class="min-w-full divide-y divide-blue-100 rounded-md px-3 border-2 border-gray-300 bg-white"
+      class="min-w-full divide-y divide-blue-100 rounded-md px-3 border-2 border-gray-300"
     >
       <tr class="p-4">
         <th class="py-3.5 text-sm font-semibold text-gray-900" scope="col">
@@ -221,15 +240,7 @@
         <tr v-if="tasks.length === 0">
           <td colspan="8" class="text-center py-2">No tasks found</td>
         </tr>
-        <tr
-          @click="
-            showForm = true;
-            taskId = task.id;
-          "
-          class="hover:bg-gray-100 cursor-pointer"
-          v-for="task in tasks"
-          :key="task"
-        >
+        <tr v-for="task in tasks" :key="task">
           <td
             class="whitespace-nowrap px-5 p text-sm font-medium text-gray-900"
           >
@@ -254,8 +265,27 @@
           <td class="whitespace-nowrap px-5 py-4 text-sm text-gray-500">
             {{ formatters.formatAmount(task.completionPercentage) }}
           </td>
-          <td class="whitespace-nowrap text-center px-5 text-sm text-gray-500">
+          <td class="text-center px-5 text-sm text-gray-500">
             {{ formatters.toProperCase(user.firstName) }}
+          </td>
+          <td class="text-center px-5 text-sm text-gray-500">
+            <button
+              @click="$router.push(`/tasks/${task.id}`)"
+              type="button"
+              class="rounded-md bg-indigo-500 ml-3 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+            >
+              View
+            </button>
+            <button
+              @click="
+                showForm = true;
+                taskId = task.id;
+              "
+              type="button"
+              class="rounded-md bg-indigo-500 ml-3 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+            >
+              Edit
+            </button>
           </td>
         </tr>
       </tbody>
@@ -360,14 +390,16 @@ import axios from "axios";
 import formatters from "@/helpers/formatters";
 import TaskForm from "@/views/Tasks/components/TaskForm.vue";
 export default {
-  props: ["user"],
+  props: ["user", "project"],
   components: { TaskForm, ChevronUpIcon, ChevronDownIcon },
   data() {
     return {
       formatters,
       tasks: [],
+      projects: [],
       meta: {},
       params: {
+        projectId: "",
         searchString: "",
         sortBy: "createdAt",
         sortOrder: "desc",
@@ -388,10 +420,23 @@ export default {
     },
   },
   async mounted() {
+    if (this.$route.query.projectId) {
+      this.params.projectId = this.$route.query.projectId;
+      this.$router.push({ query: {} });
+    }
     await this.loadTasks();
     await this.toggleSortOrder();
+    await this.loadProjects();
   },
   methods: {
+    async loadProjects() {
+      const response = await axios.get("http://localhost:3000/projects", {
+        headers: {
+          Authorization: this.user ? "Bearer " + this.user.token : null,
+        },
+      });
+      this.projects = response.data.data;
+    },
     async loadTasks() {
       this.spin = true;
       const response = await axios.get("http://localhost:3000/tasks", {

@@ -175,15 +175,7 @@
         <tr v-if="projects.length === 0">
           <td class="text-center py-2" colspan="9">No projects found</td>
         </tr>
-        <tr
-          @click="
-            showForm = true;
-            projectId = project.id;
-          "
-          class="hover:bg-gray-100 cursor-pointer"
-          v-for="project in projects"
-          :key="project"
-        >
+        <tr v-for="project in projects" :key="project">
           <td
             class="whitespace-nowrap px-5 p text-sm font-medium text-gray-900"
           >
@@ -200,6 +192,25 @@
           </td>
           <td class="whitespace-nowrap text-center px-5 text-sm text-gray-500">
             {{ formatters.toProperCase(user.firstName) }}
+          </td>
+          <td class="text-center px-5 text-sm text-gray-500">
+            <button
+              @click="$router.push(`/tasks?projectId=${project.id}`)"
+              type="button"
+              class="rounded-md bg-indigo-500 ml-3 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+            >
+              View
+            </button>
+            <button
+              @click="
+                showForm = true;
+                projectId = project.id;
+              "
+              type="button"
+              class="rounded-md bg-indigo-500 ml-3 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+            >
+              Edit
+            </button>
           </td>
         </tr>
       </tbody>

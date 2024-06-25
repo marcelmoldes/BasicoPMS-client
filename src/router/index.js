@@ -7,6 +7,7 @@ import ProjectsIndexView from "@/views/Projects/ProjectsIndexView.vue";
 import TeamIndexView from "@/views/Users/UserIndexView.vue";
 import PersonalAccountIndexView from "@/views/PersonalAccount/PersonalAccountIndexView.vue";
 import ForgotPasswordIndexView from "@/views/Login/ForgotPasswordIndexView.vue";
+import TaskView from "@/views/Tasks/TaskView.vue";
 const routes = [
   {
     path: "/register",
@@ -32,6 +33,11 @@ const routes = [
     path: "/tasks",
     name: "tasks",
     component: TasksIndexView,
+  },
+  {
+    path: "/tasks/:id",
+    name: "task",
+    component: TaskView,
   },
   {
     path: "/projects",
