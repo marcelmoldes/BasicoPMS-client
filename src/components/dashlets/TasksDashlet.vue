@@ -7,6 +7,7 @@
 
       <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none"></div>
       <button
+        v-if="showButtons"
         @click="this.$router.push('/tasks')"
         class="bg-indigo-500 hover:bg-indigo-400 text-white rounded-md px-2 py-1 text-sm font-bold"
       >
@@ -42,7 +43,12 @@
           <tr v-if="tasks.length === 0">
             <td class="text-center py-4" colspan="3">No tasks found</td>
           </tr>
-          <tr v-for="task in tasks" :key="task">
+          <tr
+            class="hover:bg-gray-100 cursor-pointer"
+            @click="$router.push(`/tasks/${task.id}`)"
+            v-for="task in tasks"
+            :key="task"
+          >
             <td class="relative py-4 pl-4 pr-3 text-sm sm:pl-6">
               {{ task.name }}
               <div
@@ -97,7 +103,7 @@ export default {
       return formatters;
     },
   },
-  props: ["tasks", "user", "spin"],
+  props: ["tasks", "user", "spin", "showButtons"],
 };
 </script>
 

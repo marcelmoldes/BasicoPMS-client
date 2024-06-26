@@ -67,7 +67,7 @@
                   @click="$router.push('/dashboard')"
                   class="text-gray-300 cursor-pointer rounded-md px-3 py-2 text-sm font-medium"
                   :class="
-                    $route.name === 'dashboard'
+                    $route.path.includes('/dashboard')
                       ? 'bg-gray-900 text-white'
                       : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                   "
@@ -78,7 +78,7 @@
                   @click="$router.push('/team')"
                   class="text-gray-300 cursor-pointer hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                   :class="
-                    $route.name === 'team'
+                    $route.path.includes('/team')
                       ? 'bg-gray-900 text-white'
                       : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                   "
@@ -88,7 +88,7 @@
                   @click="$router.push('/projects')"
                   class="cursor-pointer rounded-md px-3 py-2 text-sm font-medium"
                   :class="
-                    $route.name === 'projects'
+                    $route.path.includes('/projects')
                       ? 'bg-gray-900 text-white'
                       : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                   "
@@ -98,7 +98,7 @@
                   @click="$router.push('/tasks')"
                   class="cursor-pointer rounded-md px-3 py-2 text-sm font-medium"
                   :class="
-                    $route.name === 'tasks'
+                    $route.path.includes('/tasks')
                       ? 'bg-gray-900 text-white'
                       : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                   "

@@ -60,13 +60,7 @@
                 >
               </div>
             </div>
-            <div>
-              <span
-                v-if="error"
-                class="rounded-full bg-red-50 text-md px-4 py-2 font-medium text-red-700 ring-1 ring-inset ring-red-600"
-                >{{ error }}</span
-              >
-            </div>
+
             <div>
               <button
                 @click="login"
@@ -75,6 +69,13 @@
               >
                 Sign in
               </button>
+            </div>
+            <div>
+              <span
+                v-if="error"
+                class="rounded-full text-center ml-5 bg-red-50 text-md px-4 py-2 font-medium text-red-700 ring-1 ring-inset ring-red-600"
+                >{{ error }}</span
+              >
             </div>
           </form>
         </div>

@@ -67,7 +67,7 @@
       </div>
     </div>
     <table
-      class="min-w-full divide-y divide-blue-100 rounded-md px-3 border-2 border-gray-300"
+      class="min-w-full divide-y divide-blue-100 rounded-md px-3 border-2 bg-white"
     >
       <tr class="p-4">
         <th class="py-3.5 text-sm font-semibold text-gray-900" scope="col">

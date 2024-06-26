@@ -3,11 +3,13 @@
     <HeaderComponent v-if="!user" />
     <SecuredHeaderComponent @logUserOut="logUserOut" v-if="user" />
   </div>
+
   <router-view
     :user="user"
     @sessionExpired="logUserOut(true)"
     @userLoggedIn="userAuthentication"
   />
+  <footer-component v-if="!user"></footer-component>
 </template>
 
 <style>
@@ -19,8 +21,10 @@ body {
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import SecuredHeaderComponent from "@/components/SecureHeaderComponent.vue";
 import Cookies from "js-cookie";
+import FooterComponent from "@/components/FooterComponent.vue";
 export default {
   components: {
+    FooterComponent,
     SecuredHeaderComponent,
     HeaderComponent,
   },
@@ -52,9 +56,9 @@ export default {
       Cookies.remove("user");
       this.user = false;
       if (expired) {
-        this.$router.push("/login?action=expired");
+        this.$router.push("/?action=expired");
       } else {
-        this.$router.push("/login");
+        this.$router.push("/");
       }
     },
   },

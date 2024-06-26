@@ -8,7 +8,14 @@ import TeamIndexView from "@/views/Users/UserIndexView.vue";
 import PersonalAccountIndexView from "@/views/PersonalAccount/PersonalAccountIndexView.vue";
 import ForgotPasswordIndexView from "@/views/Login/ForgotPasswordIndexView.vue";
 import TaskView from "@/views/Tasks/TaskView.vue";
+import ProjectView from "@/views/Projects/ProjectView.vue";
+import HomeIndexView from "@/views/Home/HomeIndexView.vue";
 const routes = [
+  {
+    path: "/",
+    name: "home",
+    component: HomeIndexView,
+  },
   {
     path: "/register",
     name: "register",
@@ -40,10 +47,16 @@ const routes = [
     component: TaskView,
   },
   {
+    path: "/projects/:id",
+    name: "project",
+    component: ProjectView,
+  },
+  {
     path: "/projects",
     name: "projects",
     component: ProjectsIndexView,
   },
+
   {
     path: "/team",
     name: "team",

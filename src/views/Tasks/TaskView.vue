@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-7xl mx-auto px-4 mt-28">
+  <div class="max-w-7xl mx-auto px-4 mt-16">
     <div>
       <div class="overflow-hidden bg-white shadow sm:rounded-lg">
         <div class="px-4 py-6 sm:px-6">
@@ -122,11 +122,14 @@ export default {
   },
   methods: {
     async loadComments() {
-      const response = await axios.get("http://localhost:3000/comments", {
-        headers: {
-          Authorization: this.user ? "Bearer " + this.user.token : null,
-        },
-      });
+      const response = await axios.get(
+        `http://localhost:3000/comments?taskId=${this.$route.params.id}`,
+        {
+          headers: {
+            Authorization: this.user ? "Bearer " + this.user.token : null,
+          },
+        }
+      );
       if (response.data) {
         this.comments = response.data;
       } else {
@@ -134,11 +137,14 @@ export default {
       }
     },
     async loadAttachments() {
-      const response = await axios.get("http://localhost:3000/attachments", {
-        headers: {
-          Authorization: this.user ? "Bearer " + this.user.token : null,
-        },
-      });
+      const response = await axios.get(
+        `http://localhost:3000/attachments?taskId=${this.$route.params.id}`,
+        {
+          headers: {
+            Authorization: this.user ? "Bearer " + this.user.token : null,
+          },
+        }
+      );
       if (response.data) {
         this.attachments = response.data;
       } else {

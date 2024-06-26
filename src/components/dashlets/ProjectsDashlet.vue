@@ -41,7 +41,12 @@
           <tr v-if="projects.length === 0">
             <td class="text-center py-4" colspan="3">No projects found</td>
           </tr>
-          <tr v-for="project in projects" :key="project">
+          <tr
+            v-for="project in projects"
+            :key="project"
+            class="hover:bg-gray-100 cursor-pointer"
+            @click="$router.push(`/projects/${project.id}`)"
+          >
             <td class="relative py-4 pl-4 pr-3 text-sm sm:pl-6">
               {{ project.name }}
               <div

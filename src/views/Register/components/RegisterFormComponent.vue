@@ -91,15 +91,7 @@
               </div>
             </div>
 
-            <div class="flex items-center justify-between">
-              <div class="text-sm text-center leading-6">
-                <a
-                  href="#"
-                  class="font-semibold text-indigo-600 hover:text-indigo-500"
-                  >Do you have an account?</a
-                >
-              </div>
-            </div>
+            <div class="flex items-center justify-between"></div>
 
             <div>
               <button
@@ -137,14 +129,6 @@
               Go to Login
             </button>
           </div>
-          <p class="mt-4 text-sm leading-6 text-gray-900">
-            We care about your data. Read our
-            <a
-              href="#"
-              class="font-semibold text-indigo-600 hover:text-indigo-500"
-              >privacy&nbsp;policy</a
-            >.
-          </p>
         </form>
       </div>
     </div>

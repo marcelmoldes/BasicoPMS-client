@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-y-3 hola">
+  <div class="flex flex-col gap-y-3">
     <div class="flex justify-between">
       <select
         v-model="params.perPage"
@@ -195,7 +195,7 @@
           </td>
           <td class="text-center px-5 text-sm text-gray-500">
             <button
-              @click="$router.push(`/tasks?projectId=${project.id}`)"
+              @click="$router.push(`/projects/${project.id}`)"
               type="button"
               class="rounded-md bg-indigo-500 ml-3 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
             >

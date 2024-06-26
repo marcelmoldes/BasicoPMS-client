@@ -1,13 +1,16 @@
 <template>
-  <header class="bg-gray-900">
+  <header class="bg-white">
     <nav
       class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
       aria-label="Global"
     >
       <div class="flex lg:flex-1">
-        <a href="#" class="-m-1.5 p-1.5">
-          <span class="sr-only">Your Company</span>
-          <img class="h-8 w-auto" alt="" />
+        <a href="/" class="">
+          <img
+            class="h-20 w-20 rounded-lg"
+            src="../assets/images/basico-pms-logo.png"
+            alt=""
+          />
         </a>
       </div>
       <div class="flex lg:hidden">
@@ -33,27 +36,17 @@
           </svg>
         </button>
       </div>
-      <div class="hidden lg:flex lg:gap-x-12">
-        <a href="#" class="text-sm font-semibold leading-6 text-white"
-          >About Us</a
-        >
-        <a href="#" class="text-sm font-semibold leading-6 text-white"
-          >Products</a
-        >
-        <a href="#" class="text-sm font-semibold leading-6 text-white"
-          >Contact</a
-        >
-      </div>
-      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+
+      <div class="hidden gap-x-4 lg:flex lg:flex-1 lg:justify-end">
         <a
           @click="$router.push('/login')"
-          class="gap-x-6 text-sm cursor-pointer px-8 p-2 font-bold hover:bg-cyan-800 rounded-3xl bg-cyan-900 text-white"
-          >Log in </a
-        >z
+          class="gap-x-6 text-sm cursor-pointer px-8 p-2 font-bold hover:bg-indigo-400 rounded-3xl bg-indigo-500 text-white"
+          >Log in
+        </a>
 
         <a
           @click="$router.push('/register')"
-          class="text-sm cursor-pointer px-8 p-2 font-bold hover:bg-cyan-800 rounded-3xl bg-cyan-900 text-white"
+          class="text-sm cursor-pointer px-8 p-2 font-bold hover:bg-indigo-400 rounded-3xl bg-indigo-500 text-white"
           >Register
         </a>
       </div>
@@ -101,45 +94,20 @@
             </svg>
           </button>
         </div>
-        <div class="mt-6 flow-root">
-          <div class="-my-6 divide-y divide-gray-500/25">
-            <div class="space-y-2 py-6">
-              <a
-                href="#"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800"
-                >About Us</a
-              >
-              <a
-                href="#"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800"
-                >Products</a
-              >
-              <a
-                href="#"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800"
-                >Contact</a
-              >
-              <a
-                href="#"
-                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800"
-                >Company</a
-              >
-            </div>
-            <div class="py-6">
-              <a
-                @click="$router.push('/login')"
-                class="-mx-3 block cursor-pointer border-2 border-white rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white bg-gray-800"
-                >Log in</a
-              >
-            </div>
-            <div class="py-6">
-              <a
-                @click="$router.push('/register')"
-                class="-mx-3 block cursor-pointer border-2 border-white rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white bg-gray-800"
-                >Register</a
-              >
-            </div>
-          </div>
+
+        <div class="py-6">
+          <a
+            @click="$router.push('/login')"
+            class="-mx-3 block cursor-pointer border-2 border-white rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white bg-gray-800"
+            >Log in</a
+          >
+        </div>
+        <div class="py-6">
+          <a
+            @click="$router.push('/register')"
+            class="-mx-3 block cursor-pointer border-2 border-white rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white bg-gray-800"
+            >Register</a
+          >
         </div>
       </div>
     </div>
