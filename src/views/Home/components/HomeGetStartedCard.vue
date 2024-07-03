@@ -51,7 +51,9 @@
         <span class="circle" aria-hidden="true">
           <span class="icon arrow"></span>
         </span>
-        <span class="button-text">Get Started</span>
+        <span class="button-text" @click="$router.push('/register')"
+          >Get Started</span
+        >
       </button>
     </div>
   </div>
