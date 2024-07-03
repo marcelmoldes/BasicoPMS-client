@@ -18,7 +18,7 @@
                 type="button"
               >
                 <span class="text-base font-semibold leading-7"
-                  >What problems does Basic Crm solve?</span
+                  >What problems does BasicoPMS solve?</span
                 >
                 <span class="ml-6 flex h-7 items-center">
                   <svg
@@ -54,12 +54,16 @@
             </dt>
             <dd v-if="menuOpen1" class="mt-2 pr-12">
               <p class="text-base leading-7 text-gray-600">
-                BasicoCrm solves these problems that you may have within your
-                company: Long waiting time, Lack of knowledge about products and
-                services, Schematic treatment of the customer, No after-sale
-                contact, No customer history, No interest in the customer's
-                needs, No contact-enabling tools, Self-service, Organization of
-                the service office work
+                A PMS (Property Management System) in a company resolves several
+                key issues related to managing properties efficiently. It
+                streamlines operations by automating processes such as booking,
+                billing, and housekeeping. A PMS enhances guest experience
+                through seamless check-ins and personalized services. It also
+                provides real-time data and analytics, enabling better
+                decision-making and revenue management. Additionally, a PMS
+                ensures regulatory compliance and improves communication across
+                departments, ultimately boosting operational efficiency and
+                profitability.
               </p>
             </dd>
           </div>
@@ -73,7 +77,7 @@
                 type="button"
               >
                 <span class="text-base font-semibold leading-7"
-                  >When BasicoCrm was created and for what reason?</span
+                  >When BasicoPMS was created and for what reason?</span
                 >
                 <span class="ml-6 flex h-7 items-center">
                   <svg
@@ -109,10 +113,8 @@
             </dt>
             <dd v-if="menuOpen2" id="faq-0" class="mt-2 pr-12">
               <p class="text-base leading-7 text-gray-600">
-                It was created in 2023, as part of an improvement and experience
-                project, by Marcel Moldes, choosing a CRM software as the one
-                indicated, the most useful and complete, where it can also solve
-                problems in companies.
+                It was created in 2024, as part of an improvement and experience
+                project, by Marcel Moldes, choosing a PMS software.
               </p>
             </dd>
           </div>
@@ -126,7 +128,7 @@
                 type="button"
               >
                 <span class="text-base font-semibold leading-7"
-                  >I need to pay to have BasicoCrm services?</span
+                  >I need to pay to have BasicoPMS services?</span
                 >
                 <span class="ml-6 flex h-7 items-center">
                   <svg
@@ -177,7 +179,7 @@
                 type="button"
               >
                 <span class="text-base font-semibold leading-7"
-                  >What functions are there in BasicoPms?</span
+                  >What functions are there in BasicoPMS?</span
                 >
                 <span class="ml-6 flex h-7 items-center">
                   <svg
@@ -214,7 +216,7 @@
             <dd v-if="menuOpen4" id="faq-0" class="mt-2 pr-12">
               <p class="text-base leading-7 text-gray-600">
                 A Dashboard,being able to create, edit, view and delete users,
-                projects, your personal account where you can edit your
+                projects,tasks, your personal account where you can edit your
                 information and password, some privileges like admin and more
                 new things!
               </p>
