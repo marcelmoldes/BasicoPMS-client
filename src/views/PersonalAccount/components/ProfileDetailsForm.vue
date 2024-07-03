@@ -95,7 +95,7 @@ export default {
   methods: {
     async loadData() {
       let response = await axios.get(
-        "http://localhost:3000/users/" + this.user.id,
+        process.env.VUE_APP_API_URL + "/users/" + this.user.id,
         {
           headers: {
             Authorization: this.user ? "Bearer " + this.user.token : null,
@@ -107,7 +107,7 @@ export default {
     async save() {
       try {
         let response = await axios.patch(
-          "http://localhost:3000/users/" + this.user.id,
+          process.env.VUE_APP_API_URL + "/users/" + this.user.id,
           this.userData,
           {
             headers: {

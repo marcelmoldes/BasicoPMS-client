@@ -103,7 +103,7 @@ export default {
     async login() {
       try {
         const response = await axios.post(
-          "http://localhost:3000/login",
+          process.env.VUE_APP_API_URL + "/login",
           this.user
         );
         if (response.data) {

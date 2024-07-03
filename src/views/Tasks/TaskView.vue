@@ -123,7 +123,8 @@ export default {
   methods: {
     async loadComments() {
       const response = await axios.get(
-        `http://localhost:3000/comments?taskId=${this.$route.params.id}`,
+        process.env.VUE_APP_API_URL +
+          `/comments?taskId=${this.$route.params.id}`,
         {
           headers: {
             Authorization: this.user ? "Bearer " + this.user.token : null,
@@ -138,7 +139,8 @@ export default {
     },
     async loadAttachments() {
       const response = await axios.get(
-        `http://localhost:3000/attachments?taskId=${this.$route.params.id}`,
+        process.env.VUE_APP_API_URL +
+          `/attachments?taskId=${this.$route.params.id}`,
         {
           headers: {
             Authorization: this.user ? "Bearer " + this.user.token : null,
@@ -153,7 +155,7 @@ export default {
     },
     async loadTasks() {
       const response = await axios.get(
-        `http://localhost:3000/tasks/` + this.$route.params.id,
+        process.env.VUE_APP_API_URL + `/tasks/` + this.$route.params.id,
         {
           headers: {
             Authorization: this.user ? "Bearer " + this.user.token : null,

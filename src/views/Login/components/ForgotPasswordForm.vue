@@ -67,7 +67,7 @@ export default {
       this.error = null;
       try {
         const response = await axios.post(
-          "http://localhost:3000/forgot-password",
+          process.env.VUE_APP_API_URL + "/forgot-password",
           {
             email: this.email,
           }

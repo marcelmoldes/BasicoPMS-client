@@ -88,7 +88,8 @@ export default {
   methods: {
     async loadTasks() {
       const response = await axios.get(
-        `http://localhost:3000/tasks?projectId=${this.$route.params.id} `,
+        process.env.VUE_APP_API_URL +
+          `/tasks?projectId=${this.$route.params.id} `,
         {
           headers: {
             Authorization: this.user ? "Bearer " + this.user.token : null,
@@ -99,7 +100,7 @@ export default {
     },
     async loadProjects() {
       const response = await axios.get(
-        `http://localhost:3000/projects/` + this.$route.params.id,
+        process.env.VUE_APP_API_URL`/projects/` + this.$route.params.id,
         {
           headers: {
             Authorization: this.user ? "Bearer " + this.user.token : null,

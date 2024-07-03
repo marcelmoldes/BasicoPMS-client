@@ -258,16 +258,19 @@ export default {
       return date.toISOString().split("T")[0];
     },
     async loadOptions() {
-      const response = await axios.get("http://localhost:3000/user/config", {
-        headers: {
-          Authorization: this.user ? "Bearer " + this.user.token : null,
-        },
-      });
+      const response = await axios.get(
+        process.env.VUE_APP_API_URL + "/user/config",
+        {
+          headers: {
+            Authorization: this.user ? "Bearer " + this.user.token : null,
+          },
+        }
+      );
       this.roleOptions = response.data.roleOptions;
     },
     async loadData() {
       const response = await axios.get(
-        "http://localhost:3000/users/" + this.userId,
+        process.env.VUE_APP_API_URL + "/users/" + this.userId,
         {
           headers: {
             Authorization: this.user ? "Bearer " + this.user.token : null,
@@ -284,11 +287,14 @@ export default {
         "Are you sure you want to delete this User?"
       );
       if (confirmDelete) {
-        await axios.delete("http://localhost:3000/users/" + this.userId, {
-          headers: {
-            Authorization: this.user ? "Bearer " + this.user.token : null,
-          },
-        });
+        await axios.delete(
+          process.env.VUE_APP_API_URL + "users/" + this.userId,
+          {
+            headers: {
+              Authorization: this.user ? "Bearer " + this.user.token : null,
+            },
+          }
+        );
         this.$emit("closeForm");
       }
     },
@@ -300,7 +306,7 @@ export default {
       try {
         if (this.userData.id) {
           await axios.patch(
-            "http://localhost:3000/users/" + this.userData.id,
+            process.env.VUE_APP_API_URL + "/users/" + this.userData.id,
             this.userData,
             {
               headers: {
@@ -309,11 +315,15 @@ export default {
             }
           );
         } else {
-          await axios.post("http://localhost:3000/users", this.userData, {
-            headers: {
-              Authorization: this.user ? "Bearer " + this.user.token : null,
-            },
-          });
+          await axios.post(
+            process.env.VUE_APP_API_URL + "/users",
+            this.userData,
+            {
+              headers: {
+                Authorization: this.user ? "Bearer " + this.user.token : null,
+              },
+            }
+          );
         }
         this.$emit("closeForm");
       } catch ({ response }) {

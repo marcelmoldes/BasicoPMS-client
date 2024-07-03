@@ -402,11 +402,14 @@ export default {
   },
   methods: {
     async loadOptions() {
-      const response = await axios.get("http://localhost:3000/tasks/config", {
-        headers: {
-          Authorization: this.user ? "Bearer " + this.user.token : null,
-        },
-      });
+      const response = await axios.get(
+        process.env.VUE_APP_API_URL + "/tasks/config",
+        {
+          headers: {
+            Authorization: this.user ? "Bearer " + this.user.token : null,
+          },
+        }
+      );
       this.statusOptions = response.data.statusOptions;
       this.priorityOptions = response.data.priorityOptions;
       this.projectOptions = response.data.projectOptions;
@@ -418,7 +421,7 @@ export default {
     },
     async loadData() {
       const response = await axios.get(
-        "http://localhost:3000/tasks/" + this.taskId,
+        process.env.VUE_APP_API_URL + "/tasks/" + this.taskId,
         {
           headers: {
             Authorization: this.user ? "Bearer " + this.user.token : null,
@@ -437,11 +440,14 @@ export default {
         "Are you sure you want to delete this task?"
       );
       if (confirmDelete) {
-        await axios.delete("http://localhost:3000/tasks/" + this.taskId, {
-          headers: {
-            Authorization: this.user ? "Bearer " + this.user.token : null,
-          },
-        });
+        await axios.delete(
+          process.env.VUE_APP_API_URL + "/tasks/" + this.taskId,
+          {
+            headers: {
+              Authorization: this.user ? "Bearer " + this.user.token : null,
+            },
+          }
+        );
         this.$emit("closeForm");
       }
     },
@@ -453,7 +459,7 @@ export default {
       try {
         if (this.task.id) {
           await axios.patch(
-            "http://localhost:3000/tasks/" + this.task.id,
+            process.env.VUE_APP_API_URL + "/tasks/" + this.task.id,
             this.task,
             {
               headers: {
@@ -462,7 +468,7 @@ export default {
             }
           );
         } else {
-          await axios.post("http://localhost:3000/tasks", this.task, {
+          await axios.post(process.env.VUE_APP_API_URL + "/tasks", this.task, {
             headers: {
               Authorization: this.user ? "Bearer " + this.user.token : null,
             },

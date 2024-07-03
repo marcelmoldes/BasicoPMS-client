@@ -84,7 +84,7 @@ export default {
 
       try {
         let response = await axios.put(
-          "http://localhost:3000/change-password",
+          process.env.VUE_APP_API_URL + "/change-password",
           {
             currentPassword: this.userPassword.currentPassword,
             newPassword: this.userPassword.newPassword,

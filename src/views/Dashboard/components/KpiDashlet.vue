@@ -150,11 +150,14 @@ export default {
   methods: {
     async getKpis() {
       this.spin = true;
-      const response = await axios.get("http://localhost:3000/analytics", {
-        headers: {
-          Authorization: this.user ? "Bearer " + this.user.token : null,
-        },
-      });
+      const response = await axios.get(
+        process.env.VUE_APP_API_URL + "/analytics",
+        {
+          headers: {
+            Authorization: this.user ? "Bearer " + this.user.token : null,
+          },
+        }
+      );
       if (response.data) {
         this.analytics = response.data;
       } else {

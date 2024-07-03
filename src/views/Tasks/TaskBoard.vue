@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     async loadTasks() {
-      const response = await axios.get("http://localhost:3000/tasks", {
+      const response = await axios.get(process.env.VUE_APP_API_URL + "/tasks", {
         params: this.params,
         headers: {
           Authorization: this.user ? "Bearer " + this.user.token : null,

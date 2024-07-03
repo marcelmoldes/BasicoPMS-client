@@ -77,12 +77,15 @@ export default {
   },
   methods: {
     async loadProjects() {
-      const response = await axios.get("http://localhost:3000/projects", {
-        params: this.params,
-        headers: {
-          Authorization: this.user ? "Bearer " + this.user.token : null,
-        },
-      });
+      const response = await axios.get(
+        process.env.VUE_APP_API_URL + "/projects",
+        {
+          params: this.params,
+          headers: {
+            Authorization: this.user ? "Bearer " + this.user.token : null,
+          },
+        }
+      );
       if (response.data) {
         this.projects = response.data.data;
       } else {

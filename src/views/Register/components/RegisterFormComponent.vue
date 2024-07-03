@@ -156,7 +156,7 @@ export default {
     async save() {
       try {
         const response = await axios.post(
-          "http://localhost:3000/register",
+          process.env.VUE_APP_API_URL + "/register",
           this.formData
         );
         this.registered = true;

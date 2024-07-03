@@ -331,7 +331,7 @@ export default {
   methods: {
     async loadUsers() {
       this.spin = true;
-      const response = await axios.get("http://localhost:3000/users", {
+      const response = await axios.get(process.env.VUE_APP_API_URL + "/users", {
         params: this.params,
         headers: {
           Authorization: this.user ? "Bearer " + this.user.token : null,

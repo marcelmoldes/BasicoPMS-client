@@ -430,16 +430,19 @@ export default {
   },
   methods: {
     async loadProjects() {
-      const response = await axios.get("http://localhost:3000/projects", {
-        headers: {
-          Authorization: this.user ? "Bearer " + this.user.token : null,
-        },
-      });
+      const response = await axios.get(
+        process.env.VUE_APP_API_URL + "/projects",
+        {
+          headers: {
+            Authorization: this.user ? "Bearer " + this.user.token : null,
+          },
+        }
+      );
       this.projects = response.data.data;
     },
     async loadTasks() {
       this.spin = true;
-      const response = await axios.get("http://localhost:3000/tasks", {
+      const response = await axios.get(process.env.VUE_APP_API_URL + "/tasks", {
         params: this.params,
         headers: {
           Authorization: this.user ? "Bearer " + this.user.token : null,

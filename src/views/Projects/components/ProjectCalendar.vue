@@ -19,11 +19,14 @@ let calendarApp;
 const loaded = ref(false);
 
 onBeforeMount(async () => {
-  const response = await axios.get("http://localhost:3000/projects/calendar", {
-    headers: {
-      Authorization: props.user ? "Bearer " + props.user.token : null,
-    },
-  });
+  const response = await axios.get(
+    process.env.VUE_APP_API_URL + "/projects/calendar",
+    {
+      headers: {
+        Authorization: props.user ? "Bearer " + props.user.token : null,
+      },
+    }
+  );
   calendarApp = createCalendar({
     views: [viewDay, viewWeek, viewMonthGrid, viewMonthAgenda],
     defaultView: viewMonthGrid.name,

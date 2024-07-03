@@ -64,12 +64,15 @@ export default {
   methods: {
     async loadProjects() {
       this.spin = true;
-      const response = await axios.get("http://localhost:3000/projects", {
-        params: this.params,
-        headers: {
-          Authorization: this.user ? "Bearer " + this.user.token : null,
-        },
-      });
+      const response = await axios.get(
+        process.env.VUE_APP_API_URL + "/project",
+        {
+          params: this.params,
+          headers: {
+            Authorization: this.user ? "Bearer " + this.user.token : null,
+          },
+        }
+      );
       if (response.data) {
         this.projects = response.data.data;
       } else {
@@ -79,7 +82,7 @@ export default {
     },
     async loadTasks() {
       this.spin = true;
-      const response = await axios.get("http://localhost:3000/tasks", {
+      const response = await axios.get(process.env.VUE_APP_API_URL + "/tasks", {
         params: this.params,
         headers: {
           Authorization: this.user ? "Bearer " + this.user.token : null,

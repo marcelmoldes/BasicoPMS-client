@@ -286,7 +286,7 @@ export default {
     },
     async loadOptions() {
       const response = await axios.get(
-        "http://localhost:3000/projects/config",
+        process.env.VUE_APP_API_URL + "/projects/config",
         {
           headers: {
             Authorization: this.user ? "Bearer " + this.user.token : null,
@@ -297,7 +297,7 @@ export default {
     },
     async loadData() {
       const response = await axios.get(
-        "http://localhost:3000/projects/" + this.projectId,
+        process.env.VUE_APP_API_URL + "/projects/" + this.projectId,
         {
           headers: {
             Authorization: this.user ? "Bearer " + this.user.token : null,
@@ -315,11 +315,14 @@ export default {
         "Are you sure you want to delete this Project?"
       );
       if (confirmDelete) {
-        await axios.delete("http://localhost:3000/projects/" + this.projectId, {
-          headers: {
-            Authorization: this.user ? "Bearer " + this.user.token : null,
-          },
-        });
+        await axios.delete(
+          process.env.VUE_APP_API_URL + "/projects/" + this.projectId,
+          {
+            headers: {
+              Authorization: this.user ? "Bearer " + this.user.token : null,
+            },
+          }
+        );
         this.$emit("closeForm");
       }
     },
@@ -331,7 +334,7 @@ export default {
       try {
         if (this.project.id) {
           await axios.patch(
-            "http://localhost:3000/projects/" + this.project.id,
+            process.env.VUE_APP_API_URL + "/projects/" + this.project.id,
             this.project,
             {
               headers: {
@@ -340,11 +343,15 @@ export default {
             }
           );
         } else {
-          await axios.post("http://localhost:3000/projects", this.project, {
-            headers: {
-              Authorization: this.user ? "Bearer " + this.user.token : null,
-            },
-          });
+          await axios.post(
+            process.env.VUE_APP_API_URL + "/projects",
+            this.project,
+            {
+              headers: {
+                Authorization: this.user ? "Bearer " + this.user.token : null,
+              },
+            }
+          );
         }
         this.$emit("closeForm");
       } catch ({ response }) {
