@@ -5,7 +5,7 @@
         <h2
           class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"
         >
-          Register to Basico Project Manager
+          Register to BasicoPMS
         </h2>
       </div>
 

@@ -41,7 +41,7 @@
         <a
           @click="$router.push('/login')"
           class="gap-x-6 text-sm cursor-pointer px-8 p-2 font-bold hover:bg-indigo-400 rounded-3xl bg-indigo-500 text-white"
-          >Log in
+          >Login
         </a>
 
         <a
