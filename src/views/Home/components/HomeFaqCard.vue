@@ -12,6 +12,7 @@
             <dt>
               <!-- Expand/collapse question button -->
               <button
+                @click="menuOpen1 = menuOpen1 == !true"
                 aria-controls="faq-0"
                 aria-expanded="false"
                 class="flex w-full items-start justify-between text-left text-gray-900"
@@ -71,6 +72,7 @@
             <dt>
               <!-- Expand/collapse question button -->
               <button
+                @click="menuOpen2 = menuOpen2 == !true"
                 aria-controls="faq-0"
                 aria-expanded="false"
                 class="flex w-full items-start justify-between text-left text-gray-900"
@@ -122,6 +124,7 @@
             <dt>
               <!-- Expand/collapse question button -->
               <button
+                @click="menuOpen3 = menuOpen3 == !true"
                 aria-controls="faq-0"
                 aria-expanded="false"
                 class="flex w-full items-start justify-between text-left text-gray-900"
@@ -173,6 +176,7 @@
           <div class="pt-6">
             <dt>
               <button
+                @click="menuOpen4 = menuOpen4 == !true"
                 aria-controls="faq-0"
                 aria-expanded="false"
                 class="flex w-full items-start justify-between text-left text-gray-900"
