@@ -65,7 +65,7 @@ export default {
     async loadProjects() {
       this.spin = true;
       const response = await axios.get(
-        process.env.VUE_APP_API_URL + "/project",
+        process.env.VUE_APP_API_URL + "/projects",
         {
           params: this.params,
           headers: {
