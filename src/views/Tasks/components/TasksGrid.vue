@@ -20,7 +20,7 @@
             v-model="params.projectId"
             @change="loadProjects"
           >
-            <option></option>
+            <option>All</option>
             <option
               :value="project.id"
               v-for="project in projects"
