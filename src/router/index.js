@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import LoginIndex from "@/views/Login/LoginIndexView.vue";
 import RegisterIndex from "@/views/Register/RegisterIndexView.vue";
 import DashboardIndex from "@/views/Dashboard/DashboardIndex.vue";
@@ -70,7 +70,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes,
 });
 
